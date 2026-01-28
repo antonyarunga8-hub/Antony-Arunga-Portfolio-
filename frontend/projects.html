@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Antony Arunga's portfolio of web development projects.">
+    <title>Projects - Antony Arunga</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Image Gallery Modal -->
+    <div id="gallery-modal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+        <button onclick="closeGallery()" class="absolute top-4 right-4 text-white hover:text-gray-300 transition z-50">
+            <i class="fas fa-times text-4xl"></i>
+        </button>
+        <div class="max-w-6xl w-full">
+            <div class="text-center mb-6">
+                <h3 id="gallery-title" class="text-white text-3xl font-bold mb-2"></h3>
+                <p class="text-gray-300"><span id="current-image">1</span> / <span id="total-images">1</span></p>
+            </div>
+            <div class="relative">
+                <img id="gallery-image" src="" alt="" class="w-full h-auto rounded-lg shadow-2xl max-h-[80vh] object-contain mx-auto">
+                <button onclick="previousImage()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-4 rounded-full backdrop-blur transition">
+                    <i class="fas fa-chevron-left text-2xl"></i>
+                </button>
+                <button onclick="nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-4 rounded-full backdrop-blur transition">
+                    <i class="fas fa-chevron-right text-2xl"></i>
+                </button>
+            </div>
+            <div class="flex justify-center gap-2 mt-6" id="gallery-thumbnails"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="assets/images/favicon.jpg" alt="AA Logo" class="w-10 h-10 rounded-lg">
+                <h1 class="text-2xl font-bold gradient-text">Antony Arunga</h1>
+            </div>
+            <div class="flex items-center gap-6">
+                <ul class="flex space-x-6">
+                <li><a href="index.html" class="hover:text-blue-400 transition">Home</a></li>
+                <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
+                <li><a href="projects.html" class="hover:text-blue-400 transition active-link">Projects</a></li>
+                <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-800 transition" aria-label="Toggle theme">
+                    <i class="fas fa-moon text-xl" id="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Hero -->
+    <section class="relative text-white py-20 overflow-hidden">
+        <div class="hero-background absolute inset-0">
+            <img src="assets/images/hero-banner.jpg" alt="Projects Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-blue-900/85 to-purple-900/90"></div>
+        </div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h2 class="text-5xl md:text-6xl font-bold mb-4 fade-in-up">My Projects</h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto fade-in-up delay-1">
+                Building solutions that matter. Each project represents real-world problem solving with modern technologies.
+            </p>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-16 mb-20">
+        <!-- Featured Projects -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <h3 class="text-3xl font-bold mx-4 flex items-center">
+                    <i class="fas fa-star text-yellow-500 mr-3"></i>Featured Work
+                </h3>
+                <div class="flex-grow border-t border-gray-300"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                
+                <!-- Excelerate Platform -->
+                <div class="project-card bg-white rounded-2xl shadow-xl overflow-hidden group">
+                    <div class="relative overflow-hidden h-64 cursor-pointer" onclick="openGallery('Excelerate - Global Education Platform', ['Global Education Platform 1 Home.jpg', 'Global Education Platform 2 About us.jpg'])">
+                        <img src="assets/images/Global Education Platform 1 Home.jpg" alt="Excelerate Global Education Platform" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                            <div class="text-white text-center">
+                                <i class="fas fa-images text-5xl mb-2"></i>
+                                <p class="text-lg font-semibold">View Gallery (2 images)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                            <span class="text-gray-500 text-sm">Educational Platform</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Global Education Platform</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Comprehensive platform connecting students with global internship opportunities and workshops. 
+                            Features student registration, employer partnerships, educator collaboration, and complete pathway management.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="project-badge">HTML5</span>
+                            <span class="project-badge">CSS3</span>
+                            <span class="project-badge">JavaScript</span>
+                            <span class="project-badge">Responsive Design</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://github.com/antonyarunga8-hub" target="_blank" 
+                               class="flex-1 text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all">
+                                <i class="fab fa-github mr-2"></i>View Code
+                            </a>
+                            <a href="#" class="flex-1 text-center border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transform hover:-translate-y-1 transition-all">
+                                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modern Cafe Platform -->
+                <div class="project-card bg-white rounded-2xl shadow-xl overflow-hidden group">
+                    <div class="relative overflow-hidden h-64 cursor-pointer" onclick="openGallery('Modern Cafe Commerce Platform', ['Modern Cafe Commerce Platform1 Home.jpg', 'Modern Cafe Commerce Platform2 About us.jpg'])">
+                        <img src="assets/images/Modern Cafe Commerce Platform1 Home.jpg" alt="Modern Cafe Commerce Platform" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                            <div class="text-white text-center">
+                                <i class="fas fa-images text-5xl mb-2"></i>
+                                <p class="text-lg font-semibold">View Gallery (2 images)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                            <span class="text-gray-500 text-sm">E-Commerce</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Modern Cafe Commerce Platform</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Full-stack e-commerce system for modern cafes with product catalog, shopping cart, order management, 
+                            and admin dashboard. Built with React, TypeScript, and Material-UI.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="project-badge">React</span>
+                            <span class="project-badge">TypeScript</span>
+                            <span class="project-badge">Material-UI</span>
+                            <span class="project-badge">Tailwind</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://github.com/antonyarunga8-hub" target="_blank" 
+                               class="flex-1 text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all">
+                                <i class="fab fa-github mr-2"></i>View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Other Projects -->
+        <section>
+            <div class="flex items-center mb-8">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <h3 class="text-3xl font-bold mx-4">More Projects</h3>
+                <div class="flex-grow border-t border-gray-300"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                
+                <!-- Kaisha Foundation -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative h-48 overflow-hidden cursor-pointer group" onclick="openGallery('Kaisha Ubbaga Foundation', ['Kaisha Ubbaga Foundation1 Home.jpg', 'Kaisha Ubbaga Foundation 2About.jpg', 'Kaisha Ubbaga Foundation 3 Dashboard.jpg'])">
+                        <img src="assets/images/Kaisha Ubbaga Foundation1 Home.jpg" alt="Kaisha Ubbaga Foundation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50">
+                            <div class="text-white text-center">
+                                <i class="fas fa-images text-4xl mb-1"></i>
+                                <p class="text-sm font-semibold">View Gallery (3 images)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Kaisha Ubbaga Foundation</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Political organization website with member management, event scheduling, and community engagement features.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-badge">HTML5</span>
+                            <span class="project-badge">CSS3</span>
+                            <span class="project-badge">PHP</span>
+                            <span class="project-badge">MySQL</span>
+                        </div>
+                        <a href="https://github.com/antonyarunga8-hub" target="_blank" 
+                           class="block text-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                            <i class="fab fa-github mr-2"></i>View Code
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Portfolio Website -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative h-48 overflow-hidden cursor-pointer group" onclick="openGallery('Personal Portfolio Website', ['Personal Portfolio Website 1Home.jpg', 'Personal Portfolio Website 2About.jpg', 'Personal Portfolio Website 3 Projects.jpg', 'Personal Portfolio Website 4 Contact.jpg'])">
+                        <img src="assets/images/Personal Portfolio Website 1Home.jpg" alt="Personal Portfolio Website" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50">
+                            <div class="text-white text-center">
+                                <i class="fas fa-images text-4xl mb-1"></i>
+                                <p class="text-sm font-semibold">View Gallery (4 images)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Personal Portfolio Website</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Modern portfolio with dynamic project loading, contact form, animated UI, and SEO optimization.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-badge">Python</span>
+                            <span class="project-badge">Flask</span>
+                            <span class="project-badge">JavaScript</span>
+                            <span class="project-badge">Tailwind</span>
+                        </div>
+                        <a href="https://github.com/antonyarunga8-hub" target="_blank" 
+                           class="block text-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                            <i class="fab fa-github mr-2"></i>View Code
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Safari Tour Company -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative h-48 overflow-hidden cursor-pointer group" onclick="openGallery('Safari Tour Company Platform', ['Safari Tour Company Platform.jpg'])">
+                        <img src="assets/images/Safari Tour Company Platform.jpg" alt="Safari Tour Company Platform" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50">
+                            <div class="text-white text-center">
+                                <i class="fas fa-search-plus text-4xl mb-1"></i>
+                                <p class="text-sm font-semibold">Click to Enlarge</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Safari Tour Company Platform</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Booking platform for safari tours with package management, gallery, and customer reviews.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-badge">HTML5</span>
+                            <span class="project-badge">CSS3</span>
+                            <span class="project-badge">PHP</span>
+                            <span class="project-badge">MySQL</span>
+                        </div>
+                        <a href="https://github.com/antonyarunga8-hub" target="_blank" 
+                           class="block text-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                            <i class="fab fa-github mr-2"></i>View Code
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Weather App - IN PROGRESS -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden border-2 border-yellow-300">
+                    <div class="h-48 relative overflow-hidden weather-placeholder">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-400 via-cyan-500 to-blue-600 flex items-center justify-center">
+                            <i class="fas fa-cloud-sun text-white text-7xl opacity-100" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"></i>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold">
+                            Coming Soon
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full">🚧 IN PROGRESS</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Weather Dashboard</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Real-time weather application with forecasts, location-based weather, and interactive maps using OpenWeather API.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-badge">JavaScript</span>
+                            <span class="project-badge">API Integration</span>
+                            <span class="project-badge">Chart.js</span>
+                        </div>
+                        <a href="https://github.com/antonyarunga8-hub" target="_blank" 
+                           class="block text-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                            <i class="fab fa-github mr-2"></i>View Code
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Task Manager - IN PROGRESS -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden border-2 border-yellow-300">
+                    <div class="h-48 relative overflow-hidden task-placeholder">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-400 via-emerald-500 to-green-600 flex items-center justify-center">
+                            <i class="fas fa-tasks text-white text-7xl opacity-100" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"></i>
+                        </div>
+                        <div class="absolute bottom-2 right-2 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold">
+                            Coming Soon
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full">🚧 IN PROGRESS</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Task Management System</h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Collaborative task manager with Kanban boards, real-time updates, team workspaces, and priority management.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-badge">Python</span>
+                            <span class="project-badge">Flask</span>
+                            <span class="project-badge">MySQL</span>
+                        </div>
+                        <a href="https://github.com/antonyarunga8-hub" target="_blank" 
+                           class="block text-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                            <i class="fab fa-github mr-2"></i>View Code
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="mt-20 text-center">
+            <div class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl p-12 max-w-4xl mx-auto shadow-2xl">
+                <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">Let's Build Something Amazing</h3>
+                <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                    Have a project in mind? I'm always excited to collaborate on new ideas and solve challenging problems.
+                </p>
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <a href="contact.html" class="inline-block bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-paper-plane mr-2"></i>Start a Conversation
+                    </a>
+                    <a href="https://github.com/antonyarunga8-hub" target="_blank" class="inline-block bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition transform hover:scale-105">
+                        <i class="fab fa-github mr-2"></i>Browse GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center p-8">
+        <div class="container mx-auto">
+            <p class="mb-4">&copy; 2026 Antony Arunga. All rights reserved.</p>
+            <div class="flex justify-center gap-6 text-xl">
+                <a href="https://github.com/antonyarunga8-hub" target="_blank" class="hover:text-blue-400 transition">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/antony-arunga-b1935138a/" target="_blank" class="hover:text-blue-400 transition">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://x.com/ArungaAnto79652" target="_blank" class="hover:text-blue-400 transition">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script>
+        // Project Gallery Functionality
+        let currentGallery = [];
+        let currentIndex = 0;
+        let currentTitle = '';
+
+        function openGallery(title, images) {
+            currentGallery = images;
+            currentIndex = 0;
+            currentTitle = title;
+            document.getElementById('gallery-modal').classList.remove('hidden');
+            document.getElementById('gallery-modal').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            showImage(0);
+        }
+
+        function closeGallery() {
+            document.getElementById('gallery-modal').classList.add('hidden');
+            document.getElementById('gallery-modal').classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showImage(index) {
+            currentIndex = index;
+            const img = document.getElementById('gallery-image');
+            img.src = 'assets/images/' + currentGallery[index];
+            document.getElementById('gallery-title').textContent = currentTitle;
+            document.getElementById('current-image').textContent = index + 1;
+            document.getElementById('total-images').textContent = currentGallery.length;
+            
+            // Update thumbnails
+            const thumbnailsContainer = document.getElementById('gallery-thumbnails');
+            thumbnailsContainer.innerHTML = currentGallery.map((image, i) => `
+                <button onclick="showImage(${i})" class="w-16 h-16 rounded-lg overflow-hidden border-2 ${i === index ? 'border-blue-500' : 'border-white/30'} hover:border-blue-400 transition">
+                    <img src="assets/images/${image}" alt="Thumbnail ${i + 1}" class="w-full h-full object-cover">
+                </button>
+            `).join('');
+        }
+
+        function nextImage() {
+            const nextIndex = (currentIndex + 1) % currentGallery.length;
+            showImage(nextIndex);
+        }
+
+        function previousImage() {
+            const prevIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+            showImage(prevIndex);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('gallery-modal');
+            if (!modal.classList.contains('hidden')) {
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') previousImage();
+                if (e.key === 'Escape') closeGallery();
+            }
+        });
+
+        // Close on background click
+        document.getElementById('gallery-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'gallery-modal') {
+                closeGallery();
+            }
+        });
+    </script>
+</body>
+</html>

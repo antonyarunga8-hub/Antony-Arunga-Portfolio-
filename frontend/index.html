@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Antony Arunga - Full Stack Developer specializing in Python, JavaScript, React, and modern web technologies. Building scalable applications that make a difference.">
+    <meta name="keywords" content="Full Stack Developer, Python Developer, JavaScript, React, Web Development, Software Engineer, Antony Arunga">
+    <meta name="author" content="Antony Arunga">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Antony Arunga - Full Stack Developer Portfolio">
+    <meta property="og:description" content="Full Stack Developer specializing in modern web technologies">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/profile1.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Antony Arunga - Full Stack Developer">
+    <meta name="twitter:description" content="Full Stack Developer specializing in modern web technologies">
+    <meta name="twitter:image" content="assets/images/profile1.jpg">
+    
+    <title>Antony Arunga - Full Stack Developer Portfolio</title>
+    <link rel="icon" type="image/jpeg" href="assets/images/favicon.jpg">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="assets/images/favicon.jpg" alt="AA Logo" class="w-10 h-10 rounded-lg">
+                <h1 class="text-2xl font-bold gradient-text">Antony Arunga</h1>
+            </div>
+            <div class="flex items-center gap-6">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:text-blue-400 transition active-link">Home</a></li>
+                    <li><a href="about.html" class="hover:text-blue-400 transition">About</a></li>
+                    <li><a href="projects.html" class="hover:text-blue-400 transition">Projects</a></li>
+                    <li><a href="contact.html" class="hover:text-blue-400 transition">Contact</a></li>
+                </ul>
+                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-800 transition" aria-label="Toggle theme">
+                    <i class="fas fa-moon text-xl" id="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Banner -->
+    <main>
+        <section class="hero-section relative text-white py-32 overflow-hidden">
+            <!-- Hero Background Image -->
+            <div class="hero-background absolute inset-0">
+                <img src="assets/images/hero-banner.jpg" alt="Hero Background" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-blue-900/90 to-gray-900/95"></div>
+            </div>
+            
+            <!-- Animated Background Elements -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="floating-element"></div>
+                <div class="floating-element delay-1"></div>
+                <div class="floating-element delay-2"></div>
+            </div>
+
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <!-- Profile Image -->
+                <div class="profile-image-container mb-8">
+                    <div class="profile-image">
+                        <img src="assets/images/profile1.jpg" alt="Antony Arunga - Full Stack Developer" class="w-full h-full object-cover rounded-full">
+                    </div>
+                </div>
+                
+                <h2 class="text-6xl font-bold mb-4 fade-in-up">
+                    Hi, I'm <span class="gradient-text-alt">Antony Arunga</span>
+                </h2>
+                <p class="text-2xl text-gray-300 mb-8 fade-in-up delay-1">
+                    Software Developer | AI Enthusiast | Problem Solver
+                </p>
+                <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto fade-in-up delay-2">
+                    Entrepreneur turning ideas into interactive web & app experiences. 
+                    Passionate about beautiful, functional design | Humanitarian volunteer.
+                </p>
+                
+                <div class="flex justify-center gap-4 mb-8 fade-in-up delay-3 flex-wrap">
+                    <a href="projects.html" class="btn-primary">
+                        <i class="fas fa-briefcase mr-2"></i>View My Work
+                    </a>
+                    <a href="contact.html" class="btn-secondary">
+                        <i class="fas fa-envelope mr-2"></i>Get In Touch
+                    </a>
+                    <a href="assets/Antony_Arunga_Resume_2026.pdf" download class="btn-outline">
+                        <i class="fas fa-download mr-2"></i>Download Resume
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex justify-center gap-6 text-2xl fade-in-up delay-4">
+                    <a href="https://github.com/antonyarunga8-hub" target="_blank" 
+                       class="hover:text-blue-400 transition transform hover:scale-110"
+                       aria-label="GitHub Profile">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/antony-arunga-b1935138a/" target="_blank" 
+                       class="hover:text-blue-400 transition transform hover:scale-110"
+                       aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/ArungaAnto79652" target="_blank" 
+                       class="hover:text-blue-400 transition transform hover:scale-110"
+                       aria-label="Twitter Profile">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="mailto:antonyarunga8@gmail.com" 
+                       class="hover:text-blue-400 transition transform hover:scale-110"
+                       aria-label="Email Contact">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="stat-card">
+                        <i class="fas fa-code text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-4xl font-bold text-gray-800 mb-2 counter" data-target="10">0</h3>
+                        <p class="text-gray-600">Projects Completed</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-laptop-code text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-4xl font-bold text-gray-800 mb-2 counter" data-target="1">0</h3>
+                        <p class="text-gray-600">Year Experience</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-code-branch text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-4xl font-bold text-gray-800 mb-2 counter" data-target="10">0</h3>
+                        <p class="text-gray-600">GitHub Commits</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Skills -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12">Core Technologies</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                    <div class="tech-card">
+                        <i class="fab fa-python text-5xl mb-3"></i>
+                        <p>Python</p>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fab fa-js text-5xl mb-3"></i>
+                        <p>JavaScript</p>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fab fa-html5 text-5xl mb-3"></i>
+                        <p>HTML5</p>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fab fa-css3-alt text-5xl mb-3"></i>
+                        <p>CSS3</p>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fas fa-brackets-curly text-5xl mb-3"></i>
+                        <p>JSON</p>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fab fa-react text-5xl mb-3"></i>
+                        <p>React</p>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fab fa-node text-5xl mb-3"></i>
+                        <p>Node.js</p>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fas fa-database text-5xl mb-3"></i>
+                        <p>SQL</p>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fab fa-git-alt text-5xl mb-3"></i>
+                        <p>Git</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white text-center">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold mb-6">Let's Work Together!</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">
+                    I'm always interested in hearing about new projects and opportunities.
+                </p>
+                <a href="contact.html" class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105">
+                    <i class="fas fa-paper-plane mr-2"></i>Start a Conversation
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center p-8">
+        <div class="container mx-auto">
+            <p class="mb-4">&copy; 2026 Antony Arunga. All rights reserved.</p>
+            <div class="flex justify-center gap-6 text-xl">
+                <a href="https://github.com/antonyarunga8-hub" target="_blank" class="hover:text-blue-400 transition">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/antony-arunga-b1935138a/" target="_blank" class="hover:text-blue-400 transition">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://x.com/ArungaAnto79652" target="_blank" class="hover:text-blue-400 transition">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>
