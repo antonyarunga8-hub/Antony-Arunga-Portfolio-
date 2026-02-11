@@ -1,7 +1,7 @@
 // Main JavaScript for Antony Arunga's Portfolio
 
 // API Configuration
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://my-portfolio-2026-1.onrender.com/api';
 
 // Track page visit on load
 function trackPageVisit() {
