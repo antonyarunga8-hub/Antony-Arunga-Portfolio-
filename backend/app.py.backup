@@ -11,16 +11,7 @@ def create_app(config_class=Config):
     
     # Initialize extensions
     db.init_app(app)
-    
-    # Configure CORS with specific origins
-    CORS(app, resources={
-        r"/api/*": {
-            "origins": app.config.get('CORS_ORIGINS', '*'),
-            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-            "allow_headers": ["Content-Type", "Authorization"],
-            "supports_credentials": True
-        }
-    })
+    CORS(app)
     
     # Register blueprints
     app.register_blueprint(api_bp, url_prefix='/api')
@@ -39,7 +30,6 @@ def index():
     return {
         'message': 'Portfolio Backend API',
         'version': '1.0',
-        'status': 'running',
         'endpoints': {
             'projects': '/api/projects',
             'contact': '/api/contact',
@@ -47,11 +37,6 @@ def index():
             'analytics': '/api/analytics/stats'
         }
     }
-
-@app.route('/health')
-def health():
-    """Health check endpoint for Render"""
-    return {'status': 'healthy', 'database': 'connected'}, 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
