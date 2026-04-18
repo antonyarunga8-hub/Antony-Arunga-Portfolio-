@@ -185,3 +185,14 @@ def analytics_dashboard():
         return send_from_directory(current_dir, 'analytics_dashboard.html')
     except Exception as e:
         return jsonify({'error': str(e)}), 404
+
+# Serve Admin Dashboard
+@api_bp.route('/admin', methods=['GET'])
+def admin_dashboard():
+    """Serve the admin dashboard HTML page"""
+    try:
+        # Get the directory where this routes.py file is located
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        return send_from_directory(current_dir, 'admin_dashboard.html')
+    except Exception as e:
+        return jsonify({'error': str(e)}), 404
