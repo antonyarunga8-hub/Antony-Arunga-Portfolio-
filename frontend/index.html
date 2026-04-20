@@ -137,7 +137,7 @@
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-code-branch text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-4xl font-bold text-gray-800 mb-2 counter" data-target="10">0</h3>
+                        <h3 id="github-commits" class="text-4xl font-bold text-gray-800 mb-2">29</h3>
                         <p class="text-gray-600">GitHub Commits</p>
                     </div>
                 </div>
@@ -223,5 +223,51 @@
 
     <script src="js/main.js"></script>
     <script src="js/chatbot.js"></script>
+    <script>
+      // Live GitHub commit count across all repos
+      (async () => {
+        const username = 'antonyarunga8-hub';
+        const orgs = ['antonyarunga8-hubs-projects'];
+        const el = document.getElementById('github-commits');
+        try {
+          let total = 0;
+          // Fetch repos from personal account
+          const r1 = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+          const repos1 = await r1.json();
+          // Fetch repos from org accounts
+          let repos2 = [];
+          for (const org of orgs) {
+            const r2 = await fetch(`https://api.github.com/orgs/${org}/repos?per_page=100`);
+            const data = await r2.json();
+            if (Array.isArray(data)) repos2 = repos2.concat(data);
+          }
+          const allRepos = [...(Array.isArray(repos1) ? repos1 : []), ...repos2];
+          // Count commits per repo by this user
+          const counts = await Promise.all(
+            allRepos.slice(0, 20).map(async (repo) => {
+              try {
+                const rc = await fetch(`https://api.github.com/repos/${repo.full_name}/commits?author=${username}&per_page=100`);
+                const commits = await rc.json();
+                return Array.isArray(commits) ? commits.length : 0;
+              } catch { return 0; }
+            })
+          );
+          total = counts.reduce((a, b) => a + b, 0);
+          if (total > 0) {
+            // Animate count up
+            let start = 0;
+            const end = total;
+            const step = Math.ceil(end / 40);
+            const timer = setInterval(() => {
+              start = Math.min(start + step, end);
+              el.textContent = start + '+';
+              if (start >= end) clearInterval(timer);
+            }, 40);
+          }
+        } catch(e) {
+          console.log('GitHub API:', e);
+        }
+      })();
+    </script>
 </body>
 </html>
