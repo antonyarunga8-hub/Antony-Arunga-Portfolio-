@@ -805,7 +805,7 @@ textarea {
 .cert-iframe-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 72%;
+    padding-top: 85%;
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);
