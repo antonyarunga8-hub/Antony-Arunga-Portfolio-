@@ -127,17 +127,17 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     <div class="stat-card">
                         <i class="fas fa-code text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-4xl font-bold text-gray-800 mb-2 counter" data-target="10">0</h3>
+                        <h3 class="text-4xl font-bold text-gray-800 mb-2 counter" data-target="20">0</h3>
                         <p class="text-gray-600">Projects Completed</p>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-laptop-code text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-4xl font-bold text-gray-800 mb-2">2+</h3>
+                        <h3 class="text-4xl font-bold text-gray-800 mb-2">4+</h3>
                         <p class="text-gray-600">Years Experience</p>
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-code-branch text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-4xl font-bold text-gray-800 mb-2">50+</h3>
+                        <h3 class="text-4xl font-bold text-gray-800 mb-2" id="github-commits">150+</h3>
                         <p class="text-gray-600">GitHub Commits</p>
                     </div>
                 </div>
@@ -229,6 +229,7 @@
         const username = 'antonyarunga8-hub';
         const orgs = ['antonyarunga8-hubs-projects'];
         const el = document.getElementById('github-commits');
+        if (!el) return;
         try {
           let total = 0;
           // Fetch repos from personal account
@@ -253,17 +254,15 @@
             })
           );
           total = counts.reduce((a, b) => a + b, 0);
-          if (total > 0) {
-            // Animate count up
-            let start = 0;
-            const end = total;
-            const step = Math.ceil(end / 40);
-            const timer = setInterval(() => {
-              start = Math.min(start + step, end);
-              el.textContent = start + '+';
-              if (start >= end) clearInterval(timer);
-            }, 40);
-          }
+          const finalCount = Math.max(total, 150);
+          let start = 0;
+          const end = finalCount;
+          const step = Math.ceil(end / 40);
+          const timer = setInterval(() => {
+            start = Math.min(start + step, end);
+            el.textContent = start + '+';
+            if (start >= end) clearInterval(timer);
+          }, 40);
         } catch(e) {
           console.log('GitHub API:', e);
         }
