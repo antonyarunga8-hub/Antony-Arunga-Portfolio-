@@ -68,7 +68,7 @@
                 <!-- Profile Image -->
                 <div class="profile-image-container mb-8">
                     <div class="profile-image">
-                        <img src="assets/images/profile1.jpg" alt="Antony Arunga - Full Stack Developer" class="w-full h-full object-cover rounded-full">
+                        <img src="assets/images/profile-professional.png" alt="Antony Arunga - Full Stack Developer" class="w-full h-full object-cover rounded-full">
                     </div>
                 </div>
                 
@@ -137,7 +137,7 @@
                     </div>
                     <div class="stat-card">
                         <i class="fas fa-code-branch text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-4xl font-bold text-gray-800 mb-2" id="github-commits">150+</h3>
+                        <h3 class="text-4xl font-bold text-gray-800 mb-2" id="github-commits">120+</h3>
                         <p class="text-gray-600">GitHub Commits</p>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
         <section class="py-16 bg-gray-50">
             <div class="container mx-auto px-4">
                 <h2 class="text-4xl font-bold text-center mb-12">Core Technologies</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
                     <div class="tech-card">
                         <i class="fab fa-python text-5xl mb-3"></i>
                         <p>Python</p>
@@ -180,6 +180,10 @@
                     <div class="tech-card">
                         <i class="fas fa-database text-5xl mb-3"></i>
                         <p>SQL</p>
+                    </div>
+                    <div class="tech-card">
+                        <i class="fas fa-fire text-5xl mb-3 text-amber-500"></i>
+                        <p>Firebase</p>
                     </div>
                     <div class="tech-card">
                         <i class="fab fa-git-alt text-5xl mb-3"></i>
@@ -254,7 +258,7 @@
             })
           );
           total = counts.reduce((a, b) => a + b, 0);
-          const finalCount = Math.max(total, 150);
+          const finalCount = Math.max(total, 120);
           let start = 0;
           const end = finalCount;
           const step = Math.ceil(end / 40);
