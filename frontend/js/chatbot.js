@@ -233,23 +233,23 @@ You can view all projects in detail on the <a href="projects.html" class="text-b
         }
 
         // Skills
-        if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech stack')) {
-            return `Antony has expertise in a wide range of technologies:
+        if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech stack') || lowerMessage.includes('tool')) {
+            return `Antony has expertise in a wide range of cutting-edge technologies:
+
+<strong>AI & Automation Tools:</strong>
+• Claude Code, Openclaw Agents
+• n8n Workflow Automation
+• GoHighLevel (CRM & Sales Funnels)
 
 <strong>Programming Languages:</strong>
 • Python (Advanced)
 • JavaScript (Advanced)
+• Dart / Flutter
 • PHP (Intermediate)
 
-<strong>Frameworks & Libraries:</strong>
-• React, Flask, Node.js
+<strong>Frameworks & Databases:</strong>
+• React, Flask, Node.js, Firebase (Firestore/Auth)
 • PyTorch for AI/ML
-
-<strong>Other Skills:</strong>
-• MySQL & Database Operations
-• Responsive Web Design
-• CSS3, Tailwind CSS
-• Git & Version Control
 
 Check out the <a href="about.html" class="text-blue-500 hover:underline">About page</a> for a complete breakdown of his skills!`;
         }
