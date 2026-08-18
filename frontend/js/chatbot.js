@@ -233,23 +233,28 @@ You can view all projects in detail on the <a href="projects.html" class="text-b
         }
 
         // Skills
-        if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech stack') || lowerMessage.includes('tool')) {
-            return `Antony has expertise in a wide range of cutting-edge technologies:
+        if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech stack') || lowerMessage.includes('tool') || lowerMessage.includes('marketing')) {
+            return `Antony possesses a comprehensive, multi-disciplinary tech, automation, and marketing stack:
 
-<strong>AI & Automation Tools:</strong>
+<strong>Programming & Frameworks:</strong>
+• Python (FastAPI, Django, Flask)
+• JavaScript & TypeScript
+• React, Vue.js, Node.js, Express
+• Flutter & Dart, PHP, HTML5/CSS3
+
+<strong>Databases, ORMs & DevOps:</strong>
+• PostgreSQL, MySQL, SQL & NoSQL (Firebase, MongoDB)
+• Drizzle ORM, Prisma ORM, Zod Validation
+• Docker, CI/CD, Microservices & REST APIs
+
+<strong>AI & Automation:</strong>
 • Claude Code, Openclaw Agents
-• n8n Workflow Automation
-• GoHighLevel (CRM & Sales Funnels)
+• n8n Workflows, GoHighLevel (GHL CRM)
 
-<strong>Programming Languages:</strong>
-• Python (Advanced)
-• JavaScript (Advanced)
-• Dart / Flutter
-• PHP (Intermediate)
-
-<strong>Frameworks & Databases:</strong>
-• React, Flask, Node.js, Firebase (Firestore/Auth)
-• PyTorch for AI/ML
+<strong>Digital Marketing & Creative:</strong>
+• Digital Marketing Principles, Social Media Management
+• Google Analytics, Google Ads, SEO/SEM Best Practices
+• Graphic Design, Canva, Adobe Creative Suite
 
 Check out the <a href="about.html" class="text-blue-500 hover:underline">About page</a> for a complete breakdown of his skills!`;
         }
