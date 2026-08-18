@@ -25,10 +25,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/chatbot.css">
+    <link rel="stylesheet" href="assets/css/space-theme.css">
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-950">
     <!-- Navigation -->
-    <nav class="bg-gray-900 text-white p-4 sticky top-0 z-50 shadow-lg">
+    <nav class="bg-gray-900/95 text-white p-4 sticky top-0 z-50 shadow-lg backdrop-blur-md border-b border-gray-800">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <img src="assets/images/favicon.jpg" alt="AA Logo" class="w-10 h-10 rounded-lg">
@@ -121,28 +122,37 @@
             </div>
         </section>
 
-        <!-- Quick Stats -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="stat-card">
-                        <i class="fas fa-code text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-4xl font-bold text-gray-800 mb-2 counter" data-target="20">0</h3>
-                        <p class="text-gray-600">Projects Completed</p>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-laptop-code text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-4xl font-bold text-gray-800 mb-2">4+</h3>
-                        <p class="text-gray-600">Years Experience</p>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-code-branch text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-4xl font-bold text-gray-800 mb-2" id="github-commits">120+</h3>
-                        <p class="text-gray-600">GitHub Commits</p>
+        <!-- Cosmic Tech Space Theme Background (Starts Below Hero Banner) -->
+        <div class="cosmic-bg relative overflow-hidden py-1">
+            <!-- Floating Ambient Tech Icons -->
+            <i class="fas fa-code ambient-tech-icon text-5xl" style="top: 8%; left: 6%;"></i>
+            <i class="fas fa-rocket ambient-tech-icon text-6xl" style="top: 25%; right: 8%;"></i>
+            <i class="fas fa-microchip ambient-tech-icon text-5xl" style="top: 45%; left: 4%;"></i>
+            <i class="fas fa-layer-group ambient-tech-icon text-5xl" style="top: 65%; right: 6%;"></i>
+            <i class="fas fa-robot ambient-tech-icon text-6xl" style="top: 85%; left: 7%;"></i>
+
+            <!-- Quick Stats -->
+            <section class="py-16">
+                <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <div class="stat-card cosmic-card p-8 rounded-2xl border border-slate-700/60 shadow-xl">
+                            <i class="fas fa-code text-4xl text-blue-400 mb-4"></i>
+                            <h3 class="text-4xl font-bold text-white mb-2 counter" data-target="20">0</h3>
+                            <p class="text-gray-300">Projects Completed</p>
+                        </div>
+                        <div class="stat-card cosmic-card p-8 rounded-2xl border border-slate-700/60 shadow-xl">
+                            <i class="fas fa-laptop-code text-4xl text-blue-400 mb-4"></i>
+                            <h3 class="text-4xl font-bold text-white mb-2">4+</h3>
+                            <p class="text-gray-300">Years Experience</p>
+                        </div>
+                        <div class="stat-card cosmic-card p-8 rounded-2xl border border-slate-700/60 shadow-xl">
+                            <i class="fas fa-code-branch text-4xl text-blue-400 mb-4"></i>
+                            <h3 class="text-4xl font-bold text-white mb-2" id="github-commits">120+</h3>
+                            <p class="text-gray-300">GitHub Commits</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
         <!-- Featured Skills -->
         <section class="py-16 bg-gray-50">
@@ -256,6 +266,7 @@
             </div>
         </div>
     </footer>
+</div>
 
     <script src="js/main.js"></script>
     <script src="js/chatbot.js"></script>

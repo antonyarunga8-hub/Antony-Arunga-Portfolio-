@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/chatbot.css">
+    <link rel="stylesheet" href="assets/css/space-theme.css">
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-950 text-slate-100">
     <!-- Image Gallery Modal -->
     <div id="gallery-modal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
         <button onclick="closeGallery()" class="absolute top-4 right-4 text-white hover:text-gray-300 transition z-50">
@@ -36,7 +37,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-gray-900 text-white p-4 sticky top-0 z-50 shadow-lg">
+    <nav class="bg-gray-900/95 text-white p-4 sticky top-0 z-50 shadow-lg backdrop-blur-md border-b border-gray-800">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <img src="assets/images/favicon.jpg" alt="AA Logo" class="w-10 h-10 rounded-lg">
@@ -70,24 +71,54 @@
         </div>
     </section>
 
-    <main class="container mx-auto px-4 py-16 mb-20">
+    <!-- Cosmic Tech Space Theme Container -->
+    <div class="cosmic-bg relative overflow-hidden py-12">
+        <!-- Floating Ambient Tech Icons -->
+        <i class="fas fa-code ambient-tech-icon text-5xl" style="top: 8%; left: 5%;"></i>
+        <i class="fas fa-rocket ambient-tech-icon text-6xl" style="top: 25%; right: 7%;"></i>
+        <i class="fas fa-microchip ambient-tech-icon text-5xl" style="top: 45%; left: 3%;"></i>
+        <i class="fas fa-layer-group ambient-tech-icon text-5xl" style="top: 65%; right: 5%;"></i>
+        <i class="fas fa-robot ambient-tech-icon text-6xl" style="top: 85%; left: 6%;"></i>
+
+        <main class="container mx-auto px-4 mb-10">
+
+        <!-- Category Filter Pills Bar (Matching Image 5) -->
+        <div class="flex justify-center items-center gap-3 mb-14 flex-wrap max-w-4xl mx-auto">
+            <span class="text-slate-400 text-lg mr-2"><i class="fas fa-filter text-blue-400"></i></span>
+            <button class="filter-btn active" onclick="filterProjects('all', this)">
+                All
+            </button>
+            <button class="filter-btn" onclick="filterProjects('web', this)">
+                Web
+            </button>
+            <button class="filter-btn" onclick="filterProjects('mobile', this)">
+                Mobile
+            </button>
+            <button class="filter-btn" onclick="filterProjects('saas', this)">
+                SaaS
+            </button>
+            <button class="filter-btn" onclick="filterProjects('aiml', this)">
+                AI/ML
+            </button>
+        </div>
+
         <!-- Featured Projects -->
         <section class="mb-16">
             <div class="flex items-center mb-8">
-                <div class="flex-grow border-t border-gray-300"></div>
-                <h3 class="text-3xl font-bold mx-4 flex items-center">
-                    <i class="fas fa-star text-yellow-500 mr-3"></i>Featured Work
+                <div class="flex-grow border-t border-slate-700"></div>
+                <h3 class="text-3xl font-bold mx-4 flex items-center text-white">
+                    <i class="fas fa-star text-yellow-400 mr-3"></i>Featured Work
                 </h3>
-                <div class="flex-grow border-t border-gray-300"></div>
+                <div class="flex-grow border-t border-slate-700"></div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 
                 <!-- Excelerate Platform -->
-                <div class="project-card bg-white rounded-2xl shadow-xl overflow-hidden group">
+                <div class="project-card cosmic-card rounded-2xl shadow-xl overflow-hidden group border border-slate-700/60" data-category="web">
                     <div class="relative overflow-hidden h-64 cursor-pointer" onclick="openGallery('Excelerate - Global Education Platform', ['Global Education Platform 1 Home.jpg', 'Global Education Platform 2 About us.jpg'])">
                         <img src="assets/images/Global Education Platform 1 Home.jpg" alt="Excelerate Global Education Platform" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
                             <div class="text-white text-center">
                                 <i class="fas fa-images text-5xl mb-2"></i>
@@ -97,11 +128,11 @@
                     </div>
                     <div class="p-8">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
-                            <span class="text-gray-500 text-sm">Educational Platform</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                            <span class="text-slate-400 text-sm">Educational Platform</span>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Global Education Platform</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
+                        <h3 class="text-2xl font-bold mb-3 text-white">Global Education Platform</h3>
+                        <p class="text-slate-300 mb-6 leading-relaxed">
                             Comprehensive platform connecting students with global internship opportunities and workshops. 
                             Features student registration, employer partnerships, educator collaboration, and complete pathway management.
                         </p>
@@ -117,7 +148,7 @@
                                class="flex-1 text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all">
                                 <i class="fab fa-github mr-2"></i>View Code
                             </a>
-                            <a href="https://github.com/antonyarunga8-hub/studocorp" target="_blank" class="flex-1 text-center border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transform hover:-translate-y-1 transition-all">
+                            <a href="https://github.com/antonyarunga8-hub/studocorp" target="_blank" class="flex-1 text-center border-2 border-blue-500 text-blue-400 px-6 py-3 rounded-xl font-semibold hover:bg-blue-600/20 transform hover:-translate-y-1 transition-all">
                                 <i class="fas fa-external-link-alt mr-2"></i>View Repo
                             </a>
                         </div>
@@ -125,10 +156,10 @@
                 </div>
 
                 <!-- Modern Cafe Platform -->
-                <div class="project-card bg-white rounded-2xl shadow-xl overflow-hidden group">
+                <div class="project-card cosmic-card rounded-2xl shadow-xl overflow-hidden group border border-slate-700/60" data-category="web">
                     <div class="relative overflow-hidden h-64 cursor-pointer" onclick="openGallery('Modern Cafe Commerce Platform', ['Modern Cafe Commerce Platform1 Home.jpg', 'Modern Cafe Commerce Platform2 About us.jpg'])">
                         <img src="assets/images/Modern Cafe Commerce Platform1 Home.jpg" alt="Modern Cafe Commerce Platform" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
                             <div class="text-white text-center">
                                 <i class="fas fa-images text-5xl mb-2"></i>
@@ -138,11 +169,11 @@
                     </div>
                     <div class="p-8">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
-                            <span class="text-gray-500 text-sm">E-Commerce</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                            <span class="text-slate-400 text-sm">E-Commerce</span>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Modern Cafe Commerce Platform</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
+                        <h3 class="text-2xl font-bold mb-3 text-white">Modern Cafe Commerce Platform</h3>
+                        <p class="text-slate-300 mb-6 leading-relaxed">
                             Full-stack e-commerce shopping web app built with React, Vite, and Material-UI. Features product catalog, 
                             shopping cart, order management, retail/wholesale tiers, and admin dashboard.
                         </p>
@@ -168,28 +199,28 @@
         <!-- Other Projects -->
         <section>
             <div class="flex items-center mb-8">
-                <div class="flex-grow border-t border-gray-300"></div>
-                <h3 class="text-3xl font-bold mx-4">More Projects</h3>
-                <div class="flex-grow border-t border-gray-300"></div>
+                <div class="flex-grow border-t border-slate-700"></div>
+                <h3 class="text-3xl font-bold mx-4 text-white">More Projects</h3>
+                <div class="flex-grow border-t border-slate-700"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
                 <!-- Cheers Hotel Sales Records App (POS) -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden border-2 border-blue-500">
+                <div class="project-card cosmic-card rounded-xl shadow-lg overflow-hidden border-2 border-blue-500/80" data-category="mobile saas">
                     <div class="h-48 relative overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 flex items-center justify-center">
                         <i class="fas fa-cash-register text-white text-7xl opacity-90" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"></i>
-                        <div class="absolute bottom-2 right-2 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                        <div class="absolute bottom-2 right-2 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold">
                             ✓ Active POS App
                         </div>
                     </div>
                     <div class="p-6">
-                        <div class="mb-3">
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
-                            <span class="text-gray-500 text-xs ml-2">Mobile & Desktop</span>
+                        <div class="mb-3 flex items-center justify-between">
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                            <span class="text-slate-400 text-xs">Mobile & SaaS</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">Cheers Hotel Sales Records (POS)</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
+                        <h3 class="text-xl font-bold mb-3 text-white">Cheers Hotel Sales Records (POS)</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
                             A POS-style app replacing Cheers Hotel's manual receipt book. Orders can be recorded either at the desktop till or from a staff member's phone at tables.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
@@ -206,19 +237,19 @@
                 </div>
 
                 <!-- Cross-Platform Mobile Learning App -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden border-2 border-indigo-500">
+                <div class="project-card cosmic-card rounded-xl shadow-lg overflow-hidden border-2 border-indigo-500/80" data-category="mobile">
                     <div class="h-48 relative overflow-hidden bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-700 flex items-center justify-center">
                         <i class="fas fa-mobile-alt text-white text-7xl opacity-90" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"></i>
-                        <div class="absolute bottom-2 right-2 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                        <div class="absolute bottom-2 right-2 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold">
                             ✓ Mobile App
                         </div>
                     </div>
                     <div class="p-6">
                         <div class="mb-3">
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">Cross-Platform Mobile Learning App</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
+                        <h3 class="text-xl font-bold mb-3 text-white">Cross-Platform Mobile Learning App</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
                             A cross-platform mobile learning application built with Flutter, featuring interactive course lessons, progress tracking, and student assessments.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
@@ -235,7 +266,7 @@
                 </div>
 
                 <!-- AI4SMES SaaS Platform -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden border-2 border-purple-500">
+                <div class="project-card cosmic-card rounded-xl shadow-lg overflow-hidden border-2 border-purple-500/80" data-category="aiml saas">
                     <div class="h-48 relative overflow-hidden bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700 flex items-center justify-center">
                         <i class="fas fa-brain text-white text-7xl opacity-100" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"></i>
                         <div class="absolute bottom-2 right-2 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold">
@@ -244,10 +275,10 @@
                     </div>
                     <div class="p-6">
                         <div class="mb-3">
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ ACTIVE</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">✓ ACTIVE</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">AI4SMES Automation Platform</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
+                        <h3 class="text-xl font-bold mb-3 text-white">AI4SMES Automation Platform</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
                             AI-powered SaaS platform enabling businesses to automate operations, improve productivity, increase revenue, and make smarter decisions with easy-to-use AI tools.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
@@ -264,18 +295,16 @@
                 </div>
                 
                 <!-- SecurePay Fintech -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="h-48 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-700 flex items-center justify-center">
-                            <i class="fas fa-shield-alt text-white text-7xl opacity-100" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"></i>
-                        </div>
+                <div class="project-card cosmic-card rounded-xl shadow-lg overflow-hidden border border-slate-700/60" data-category="saas web">
+                    <div class="h-48 relative overflow-hidden bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-700 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-7xl opacity-100" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"></i>
                     </div>
                     <div class="p-6">
                         <div class="mb-3">
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">SecurePay Fintech</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
+                        <h3 class="text-xl font-bold mb-3 text-white">SecurePay Fintech</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
                             Secure payment processing platform with multi-currency support, fraud detection algorithms, and real-time transaction tracking.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
@@ -285,23 +314,23 @@
                             <span class="project-badge">Firebase</span>
                         </div>
                         <a href="https://github.com/antonyarunga8-hub/securepay-fintech" target="_blank"
-                           class="block text-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                           class="block text-center bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition">
                             <i class="fab fa-github mr-2"></i>View Code
                         </a>
                     </div>
                 </div>
 
                 <!-- Kolman Grains Platform -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="project-card cosmic-card rounded-xl shadow-lg overflow-hidden border border-slate-700/60" data-category="web">
                     <div class="h-48 relative overflow-hidden bg-gradient-to-br from-amber-500 via-orange-600 to-yellow-700 flex items-center justify-center">
                         <i class="fas fa-seedling text-white text-7xl opacity-90" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"></i>
                     </div>
                     <div class="p-6">
                         <div class="mb-3">
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">Kolman Grains Retail Platform</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
+                        <h3 class="text-xl font-bold mb-3 text-white">Kolman Grains Retail Platform</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
                             E-commerce and inventory tracking system for grain distribution, agricultural product management, and sales reporting.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
@@ -311,23 +340,23 @@
                             <span class="project-badge">HTML5</span>
                         </div>
                         <a href="https://github.com/antonyarunga8-hub/kolman-grains" target="_blank" 
-                           class="block text-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                           class="block text-center bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition">
                             <i class="fab fa-github mr-2"></i>View Code
                         </a>
                     </div>
                 </div>
 
                 <!-- TWC Signatures -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="project-card cosmic-card rounded-xl shadow-lg overflow-hidden border border-slate-700/60" data-category="web">
                     <div class="h-48 relative overflow-hidden bg-gradient-to-br from-teal-500 via-emerald-600 to-green-700 flex items-center justify-center">
                         <i class="fas fa-file-signature text-white text-7xl opacity-90" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));"></i>
                     </div>
                     <div class="p-6">
                         <div class="mb-3">
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">TWC Digital Signatures</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
+                        <h3 class="text-xl font-bold mb-3 text-white">TWC Digital Signatures</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
                             Digital signature generator and document management tool allowing users to capture, verify, and export digital signatures.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
@@ -337,16 +366,44 @@
                             <span class="project-badge">Canvas API</span>
                         </div>
                         <a href="https://github.com/antonyarunga8-hub/twc-signatures" target="_blank" 
-                           class="block text-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                           class="block text-center bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition">
                             <i class="fab fa-github mr-2"></i>View Code
                         </a>
                     </div>
                 </div>
 
                 <!-- Portfolio Website -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="project-card cosmic-card rounded-xl shadow-lg overflow-hidden border border-slate-700/60" data-category="web">
                     <div class="relative h-48 overflow-hidden cursor-pointer group" onclick="openGallery('Personal Portfolio Website', ['Personal Portfolio Website 1Home.jpg', 'Personal Portfolio Website 2About.jpg', 'Personal Portfolio Website 3 Projects.jpg', 'Personal Portfolio Website 4 Contact.jpg'])">
                         <img src="assets/images/Personal Portfolio Website 1Home.jpg" alt="Personal Portfolio Website" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50">
+                            <div class="text-white text-center">
+                                <i class="fas fa-images text-4xl mb-1"></i>
+                                <p class="text-sm font-semibold">View Gallery (4 images)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-3">
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Personal Portfolio Website</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
+                            Modern portfolio with dynamic project loading, contact form, interactive Ynot AI Chatbot, and SEO optimization.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="project-badge">Python</span>
+                            <span class="project-badge">Flask</span>
+                            <span class="project-badge">JavaScript</span>
+                            <span class="project-badge">Tailwind</span>
+                        </div>
+                        <a href="https://github.com/antonyarunga8-hub/Antony-Arunga-Portfolio-" target="_blank" 
+                           class="block text-center bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition">
+                            <i class="fab fa-github mr-2"></i>View Code
+                        </a>
+                    </div>
+                </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50">
                             <div class="text-white text-center">
@@ -516,6 +573,23 @@
                 closeGallery();
             }
         });
+
+        // Filter Projects Category Pills Functionality (Matching Image 5)
+        function filterProjects(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                const cat = card.getAttribute('data-category') || '';
+                if (category === 'all' || cat.includes(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
     </script>
+</div>
 </body>
 </html>
