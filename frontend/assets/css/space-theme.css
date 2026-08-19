@@ -1,23 +1,45 @@
-/* Cosmic Tech Space Theme Background */
-.cosmic-bg {
-    background: linear-gradient(180deg, #071328 0%, #0c182e 20%, #101d36 40%, #0a1120 60%, #0d1b2a 80%, #060d19 100%);
-    background-attachment: fixed;
-    position: relative;
-    color: #e2e8f0;
+/* ==========================================
+   Antony Arunga Portfolio - Space Theme
+   Dark & Light Mode Harmony + Mobile Optimization
+   ========================================== */
+
+/* ------------------------------------------
+   1. Dark Mode & Default Cosmic Variables
+   ------------------------------------------ */
+:root {
+    --cosmic-bg: linear-gradient(180deg, #071328 0%, #0c182e 20%, #101d36 40%, #0a1120 60%, #0d1b2a 80%, #060d19 100%);
+    --card-bg: rgba(15, 23, 42, 0.85);
+    --card-border: rgba(51, 65, 85, 0.6);
+    --card-text-primary: #f8fafc;
+    --card-text-secondary: #cbd5e1;
+    --icon-color: #38bdf8;
+    --filter-btn-bg: rgba(30, 41, 59, 0.8);
+    --filter-btn-border: rgba(51, 65, 85, 0.8);
+    --filter-btn-text: #94a3b8;
 }
 
-/* Floating Ambient Tech Background Elements */
+/* ------------------------------------------
+   2. Base Cosmic Background Styling
+   ------------------------------------------ */
+.cosmic-bg {
+    background: var(--cosmic-bg);
+    background-attachment: fixed;
+    position: relative;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Floating Ambient Tech Background Stars & Grid */
 .cosmic-bg::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background-image: 
-        radial-gradient(2px 2px at 40px 60px, rgba(255, 255, 255, 0.4), rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 150px 200px, rgba(56, 189, 248, 0.5), rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 300px 100px, rgba(168, 85, 247, 0.4), rgba(0,0,0,0)),
-        radial-gradient(3px 3px at 450px 350px, rgba(59, 130, 246, 0.5), rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 600px 180px, rgba(236, 72, 153, 0.4), rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 750px 420px, rgba(255, 255, 255, 0.4), rgba(0,0,0,0));
+        radial-gradient(2px 2px at 40px 60px, rgba(255, 255, 255, 0.35), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 150px 200px, rgba(56, 189, 248, 0.45), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 300px 100px, rgba(168, 85, 247, 0.35), rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 450px 350px, rgba(59, 130, 246, 0.45), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 600px 180px, rgba(236, 72, 153, 0.35), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 750px 420px, rgba(255, 255, 255, 0.35), rgba(0,0,0,0));
     background-repeat: repeat;
     background-size: 800px 600px;
     opacity: 0.6;
@@ -25,13 +47,13 @@
     z-index: 0;
 }
 
-/* Ambient Floating Icons Container */
+/* Ambient Floating Icons */
 .ambient-tech-icon {
     position: absolute;
     opacity: 0.15;
     pointer-events: none;
     z-index: 0;
-    color: #38bdf8;
+    color: var(--icon-color);
     filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3));
     animation: floatSlow 12s ease-in-out infinite alternate;
 }
@@ -42,26 +64,29 @@
     100% { transform: translateY(15px) rotate(-5deg); }
 }
 
-/* Card glassmorphism overrides for dark theme */
+/* ------------------------------------------
+   3. Cosmic Card Styling (Dark Mode Default)
+   ------------------------------------------ */
 .cosmic-card {
-    background: rgba(15, 23, 42, 0.85);
+    background: var(--card-bg);
     backdrop-filter: blur(12px);
-    border: 1 border border-slate-700/60;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--card-text-primary);
 }
 
 .cosmic-card:hover {
     border-color: rgba(59, 130, 246, 0.5);
-    box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.25);
 }
 
-/* Projects Category Filter Pills */
+/* Category Filter Pills */
 .filter-btn {
-    background: rgba(30, 41, 59, 0.8);
-    color: #94a3b8;
-    border: 1px solid rgba(51, 65, 85, 0.8);
-    padding: 0.6rem 1.5rem;
+    background: var(--filter-btn-bg);
+    color: var(--filter-btn-text);
+    border: 1px solid var(--filter-btn-border);
+    padding: 0.55rem 1.4rem;
     border-radius: 9999px;
     font-weight: 600;
     font-size: 0.95rem;
@@ -75,13 +100,103 @@
 .filter-btn:hover {
     color: #ffffff;
     border-color: #3b82f6;
-    background: rgba(30, 58, 138, 0.5);
+    background: rgba(30, 58, 138, 0.6);
     box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
 }
 
 .filter-btn.active {
     background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-    color: #ffffff;
-    border-color: transparent;
+    color: #ffffff !important;
+    border-color: transparent !important;
     box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5);
+}
+
+/* ------------------------------------------
+   4. Light Mode Responsive Overrides
+   ------------------------------------------ */
+body:not(.dark-mode),
+body.light-mode {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+body:not(.dark-mode) .cosmic-bg,
+body.light-mode .cosmic-bg {
+    background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%, #f8fafc 100%);
+    color: #0f172a;
+}
+
+body:not(.dark-mode) .cosmic-bg::before,
+body.light-mode .cosmic-bg::before {
+    opacity: 0.2;
+    background-image: 
+        radial-gradient(2px 2px at 40px 60px, rgba(15, 23, 42, 0.3), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 200px 150px, rgba(37, 99, 235, 0.4), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 400px 300px, rgba(124, 58, 237, 0.3), rgba(0,0,0,0));
+}
+
+body:not(.dark-mode) .ambient-tech-icon,
+body.light-mode .ambient-tech-icon {
+    color: #2563eb;
+    opacity: 0.08;
+}
+
+body:not(.dark-mode) .cosmic-card,
+body.light-mode .cosmic-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(203, 213, 225, 0.8);
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    color: #0f172a;
+}
+
+body:not(.dark-mode) .cosmic-card h3,
+body:not(.dark-mode) .cosmic-card h4,
+body.light-mode .cosmic-card h3,
+body.light-mode .cosmic-card h4 {
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) .cosmic-card p,
+body.light-mode .cosmic-card p {
+    color: #334155 !important;
+}
+
+body:not(.dark-mode) .cosmic-card .text-slate-300,
+body:not(.dark-mode) .cosmic-card .text-slate-400,
+body.light-mode .cosmic-card .text-slate-300,
+body.light-mode .cosmic-card .text-slate-400 {
+    color: #475569 !important;
+}
+
+body:not(.dark-mode) .filter-btn,
+body.light-mode .filter-btn {
+    background: #ffffff;
+    color: #334155;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+body:not(.dark-mode) .filter-btn:hover,
+body.light-mode .filter-btn:hover {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-color: #3b82f6;
+}
+
+/* ------------------------------------------
+   5. Mobile & Tablet Responsiveness
+   ------------------------------------------ */
+@media (max-width: 768px) {
+    .cosmic-card {
+        padding: 1.25rem !important;
+    }
+
+    .filter-btn {
+        padding: 0.45rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .ambient-tech-icon {
+        font-size: 2.5rem !important;
+    }
 }
