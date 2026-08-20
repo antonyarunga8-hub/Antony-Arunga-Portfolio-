@@ -103,7 +103,7 @@
         </div>
 
         <!-- Featured Projects -->
-        <section class="mb-16">
+        <section class="project-section mb-16">
             <div class="flex items-center mb-8">
                 <div class="flex-grow border-t border-slate-700"></div>
                 <h3 class="text-3xl font-bold mx-4 flex items-center text-white">
@@ -197,7 +197,7 @@
         </section>
 
         <!-- Other Projects -->
-        <section>
+        <section class="project-section">
             <div class="flex items-center mb-8">
                 <div class="flex-grow border-t border-slate-700"></div>
                 <h3 class="text-3xl font-bold mx-4 text-white">More Projects</h3>
@@ -404,40 +404,12 @@
                         </a>
                     </div>
                 </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50">
-                            <div class="text-white text-center">
-                                <i class="fas fa-images text-4xl mb-1"></i>
-                                <p class="text-sm font-semibold">View Gallery (4 images)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="mb-3">
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Personal Portfolio Website</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
-                            Modern portfolio with dynamic project loading, contact form, interactive Ynot AI Chatbot, and SEO optimization.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="project-badge">Python</span>
-                            <span class="project-badge">Flask</span>
-                            <span class="project-badge">JavaScript</span>
-                            <span class="project-badge">Tailwind</span>
-                        </div>
-                        <a href="https://github.com/antonyarunga8-hub/Antony-Arunga-Portfolio-" target="_blank" 
-                           class="block text-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
-                            <i class="fab fa-github mr-2"></i>View Code
-                        </a>
-                    </div>
-                </div>
 
                 <!-- Safari Tour Company -->
-                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="project-card cosmic-card rounded-xl shadow-lg overflow-hidden border border-slate-700/60" data-category="web">
                     <div class="relative h-48 overflow-hidden cursor-pointer group" onclick="openGallery('Safari Tour Company Platform', ['Safari Tour Company Platform.jpg'])">
                         <img src="assets/images/Safari Tour Company Platform.jpg" alt="Safari Tour Company Platform" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50">
                             <div class="text-white text-center">
                                 <i class="fas fa-search-plus text-4xl mb-1"></i>
@@ -447,10 +419,10 @@
                     </div>
                     <div class="p-6">
                         <div class="mb-3">
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">✓ COMPLETED</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">Safari Tour Company Platform</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
+                        <h3 class="text-xl font-bold mb-3 text-white">Safari Tour Company Platform</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
                             Booking platform for safari tours with package management, gallery, and customer reviews.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
@@ -460,7 +432,7 @@
                             <span class="project-badge">MySQL</span>
                         </div>
                         <a href="https://github.com/antonyarunga8-hub" target="_blank" 
-                           class="block text-center bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-900 transition">
+                           class="block text-center bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition">
                             <i class="fab fa-github mr-2"></i>View Code
                         </a>
                     </div>
@@ -582,10 +554,20 @@
             const cards = document.querySelectorAll('.project-card');
             cards.forEach(card => {
                 const cat = card.getAttribute('data-category') || '';
-                if (category === 'all' || cat.includes(category)) {
+                if (category === 'all' || cat.split(' ').includes(category)) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
+                }
+            });
+
+            // Hide empty sections gracefully
+            document.querySelectorAll('.project-section').forEach(section => {
+                const visibleCards = Array.from(section.querySelectorAll('.project-card')).filter(c => c.style.display !== 'none');
+                if (visibleCards.length === 0 && category !== 'all') {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = 'block';
                 }
             });
         }

@@ -26,6 +26,7 @@
     background-attachment: fixed;
     position: relative;
     transition: background 0.4s ease, color 0.4s ease;
+    min-height: 100vh;
 }
 
 /* Floating Ambient Tech Background Stars & Grid */
@@ -65,7 +66,7 @@
 }
 
 /* ------------------------------------------
-   3. Cosmic Card Styling (Dark Mode Default)
+   3. Cosmic Card & Filter Pills Styling
    ------------------------------------------ */
 .cosmic-card {
     background: var(--card-bg);
@@ -81,7 +82,6 @@
     box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.25);
 }
 
-/* Category Filter Pills */
 .filter-btn {
     background: var(--filter-btn-bg);
     color: var(--filter-btn-text);
@@ -105,25 +105,81 @@
 }
 
 .filter-btn.active {
-    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
     color: #ffffff !important;
     border-color: transparent !important;
-    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5);
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.5) !important;
 }
 
 /* ------------------------------------------
-   4. Light Mode Responsive Overrides
+   4. Navbar Light & Dark Mode Contrast Rules
    ------------------------------------------ */
+body.dark-mode nav {
+    background-color: rgba(15, 23, 42, 0.95) !important;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.6) !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode nav a {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode nav a:hover {
+    color: #60a5fa !important;
+}
+
+body.dark-mode nav a.active-link {
+    color: #60a5fa !important;
+    font-weight: 700;
+    border-bottom: 2px solid #60a5fa;
+}
+
+body.dark-mode #theme-toggle {
+    color: #f8fafc !important;
+}
+
+/* Light Mode Overrides */
 body:not(.dark-mode),
 body.light-mode {
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) nav,
+body.light-mode nav {
+    background-color: rgba(255, 255, 255, 0.96) !important;
+    border-bottom: 1px solid rgba(203, 213, 225, 0.8) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) nav a,
+body.light-mode nav a {
+    color: #334155 !important;
+    font-weight: 600;
+}
+
+body:not(.dark-mode) nav a:hover,
+body.light-mode nav a:hover {
+    color: #2563eb !important;
+}
+
+body:not(.dark-mode) nav a.active-link,
+body.light-mode nav a.active-link {
+    color: #2563eb !important;
+    font-weight: 700;
+    border-bottom: 2px solid #2563eb;
+}
+
+body:not(.dark-mode) #theme-toggle,
+body.light-mode #theme-toggle {
+    color: #334155 !important;
 }
 
 body:not(.dark-mode) .cosmic-bg,
 body.light-mode .cosmic-bg {
-    background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%, #f8fafc 100%);
-    color: #0f172a;
+    background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%, #f8fafc 100%) !important;
+    color: #0f172a !important;
 }
 
 body:not(.dark-mode) .cosmic-bg::before,
@@ -137,16 +193,16 @@ body.light-mode .cosmic-bg::before {
 
 body:not(.dark-mode) .ambient-tech-icon,
 body.light-mode .ambient-tech-icon {
-    color: #2563eb;
-    opacity: 0.08;
+    color: #2563eb !important;
+    opacity: 0.1;
 }
 
 body:not(.dark-mode) .cosmic-card,
 body.light-mode .cosmic-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(203, 213, 225, 0.8);
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
-    color: #0f172a;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(203, 213, 225, 0.9) !important;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04) !important;
+    color: #0f172a !important;
 }
 
 body:not(.dark-mode) .cosmic-card h3,
@@ -170,17 +226,25 @@ body.light-mode .cosmic-card .text-slate-400 {
 
 body:not(.dark-mode) .filter-btn,
 body.light-mode .filter-btn {
-    background: #ffffff;
-    color: #334155;
-    border-color: #cbd5e1;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background: #ffffff !important;
+    color: #1e293b !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
 }
 
 body:not(.dark-mode) .filter-btn:hover,
 body.light-mode .filter-btn:hover {
-    background: #eff6ff;
-    color: #1d4ed8;
-    border-color: #3b82f6;
+    background: #eff6ff !important;
+    color: #1d4ed8 !important;
+    border-color: #3b82f6 !important;
+}
+
+body:not(.dark-mode) .filter-btn.active,
+body.light-mode .filter-btn.active {
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4) !important;
 }
 
 /* ------------------------------------------
