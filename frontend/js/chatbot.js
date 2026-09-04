@@ -223,10 +223,12 @@ class YnotChatbot {
         if (lowerMessage.includes('project')) {
             return `Antony has worked on several impressive projects including:
             
+• <strong>ArungaStudio Web Platform</strong> - Official MERN stack digital home & Global Learning Pathways
+• <strong>Grow AI</strong> - AI-powered growth intelligence and workflow automation platform
+• <strong>Arunga Bar & Cheers Hotel Sales Records (POS)</strong> - Flutter & Firebase POS solutions
 • <strong>Global Education Platform</strong> - Connecting students with internship opportunities
 • <strong>Modern Cafe Commerce Platform</strong> - Full-stack e-commerce system
-• <strong>Kaisha Ubbaga Foundation</strong> - Political organization website
-• <strong>Personal Portfolio Website</strong> - This very site you're on!
+• <strong>Personal Portfolio Website</strong> - Dynamic space-themed portfolio & AI chatbot
 • <strong>Safari Tour Company Platform</strong> - Booking system for safari tours
 
 You can view all projects in detail on the <a href="projects.html" class="text-blue-500 hover:underline">Projects page</a>. Would you like to know more about any specific project?`;

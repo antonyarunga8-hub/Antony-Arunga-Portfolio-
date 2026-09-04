@@ -248,7 +248,213 @@ body.light-mode .filter-btn.active {
 }
 
 /* ------------------------------------------
-   5. Mobile & Tablet Responsiveness
+   5. Light Mode – Section Headings & Text Overrides
+   ------------------------------------------ */
+/* Section headings that use text-white — invisible on light bg */
+body:not(.dark-mode) .cosmic-bg .text-white,
+body.light-mode .cosmic-bg .text-white {
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .text-slate-100,
+body:not(.dark-mode) .cosmic-bg .text-slate-200,
+body:not(.dark-mode) .cosmic-bg .text-slate-300,
+body:not(.dark-mode) .cosmic-bg .text-slate-400,
+body.light-mode .cosmic-bg .text-slate-100,
+body.light-mode .cosmic-bg .text-slate-200,
+body.light-mode .cosmic-bg .text-slate-300,
+body.light-mode .cosmic-bg .text-slate-400 {
+    color: #475569 !important;
+}
+
+/* Gradient text should stay vibrant in both modes */
+body:not(.dark-mode) .cosmic-bg .gradient-text,
+body.light-mode .cosmic-bg .gradient-text {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Progress bar labels in skill cards */
+body:not(.dark-mode) .cosmic-card .text-blue-400,
+body.light-mode .cosmic-card .text-blue-400 {
+    color: #2563eb !important;
+}
+
+body:not(.dark-mode) .cosmic-card .font-semibold.text-white,
+body.light-mode .cosmic-card .font-semibold.text-white {
+    color: #0f172a !important;
+}
+
+/* ------------------------------------------
+   6. Light Mode – Experience & Education Cards
+   ------------------------------------------ */
+body:not(.dark-mode) .cosmic-bg .experience-card,
+body.light-mode .cosmic-bg .experience-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(203, 213, 225, 0.9) !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+    border-left: 4px solid #6366f1 !important;
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .experience-card h4,
+body.light-mode .cosmic-bg .experience-card h4 {
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .experience-card .text-gray-600,
+body:not(.dark-mode) .cosmic-bg .experience-card .text-gray-500,
+body.light-mode .cosmic-bg .experience-card .text-gray-600,
+body.light-mode .cosmic-bg .experience-card .text-gray-500 {
+    color: #475569 !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .experience-card .text-gray-700,
+body.light-mode .cosmic-bg .experience-card .text-gray-700 {
+    color: #334155 !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .experience-card .text-blue-400,
+body.light-mode .cosmic-bg .experience-card .text-blue-400 {
+    color: #2563eb !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .experience-card .text-slate-200,
+body:not(.dark-mode) .cosmic-bg .experience-card .text-slate-300,
+body:not(.dark-mode) .cosmic-bg .experience-card .text-slate-400,
+body.light-mode .cosmic-bg .experience-card .text-slate-200,
+body.light-mode .cosmic-bg .experience-card .text-slate-300,
+body.light-mode .cosmic-bg .experience-card .text-slate-400 {
+    color: #475569 !important;
+}
+
+/* Education & Certification bg-white cards inside cosmic-bg */
+body:not(.dark-mode) .cosmic-bg .bg-white,
+body.light-mode .cosmic-bg .bg-white {
+    background: rgba(255, 255, 255, 0.97) !important;
+    border: 1px solid rgba(203, 213, 225, 0.8) !important;
+    color: #0f172a !important;
+}
+
+/* Interests & Hobbies cards */
+body:not(.dark-mode) .cosmic-bg .bg-white h4,
+body.light-mode .cosmic-bg .bg-white h4 {
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .bg-white .text-gray-600,
+body.light-mode .cosmic-bg .bg-white .text-gray-600 {
+    color: #475569 !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .bg-white .text-blue-600,
+body.light-mode .cosmic-bg .bg-white .text-blue-600 {
+    color: #2563eb !important;
+}
+
+/* ------------------------------------------
+   7. Light Mode – Contact Page Form & Cards
+   ------------------------------------------ */
+body:not(.dark-mode) .contact-form label,
+body.light-mode .contact-form label {
+    color: #1e293b !important;
+}
+
+body:not(.dark-mode) .contact-form .text-blue-600,
+body.light-mode .contact-form .text-blue-600 {
+    color: #2563eb !important;
+}
+
+body:not(.dark-mode) .contact-form input,
+body:not(.dark-mode) .contact-form textarea,
+body.light-mode .contact-form input,
+body.light-mode .contact-form textarea {
+    background: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) .contact-form input:focus,
+body:not(.dark-mode) .contact-form textarea:focus,
+body.light-mode .contact-form input:focus,
+body.light-mode .contact-form textarea:focus {
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+}
+
+/* Contact info right-side cards */
+body:not(.dark-mode) .cosmic-bg .bg-white .text-gray-800,
+body.light-mode .cosmic-bg .bg-white .text-gray-800 {
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .bg-white .font-semibold,
+body.light-mode .cosmic-bg .bg-white .font-semibold {
+    color: #1e293b !important;
+}
+
+/* Social link cards in contact */
+body:not(.dark-mode) .cosmic-bg .border-gray-200,
+body.light-mode .cosmic-bg .border-gray-200 {
+    border-color: #e2e8f0 !important;
+}
+
+/* ------------------------------------------
+   8. Light Mode – Footer
+   ------------------------------------------ */
+body:not(.dark-mode) footer,
+body.light-mode footer {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+}
+
+body:not(.dark-mode) footer a,
+body.light-mode footer a {
+    color: #cbd5e1 !important;
+}
+
+body:not(.dark-mode) footer a:hover,
+body.light-mode footer a:hover {
+    color: #60a5fa !important;
+}
+
+/* ------------------------------------------
+   9. Light Mode – Project Cards
+   ------------------------------------------ */
+body:not(.dark-mode) .cosmic-bg .project-card,
+body.light-mode .cosmic-bg .project-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(203, 213, 225, 0.9) !important;
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .project-card .text-white,
+body.light-mode .cosmic-bg .project-card .text-white {
+    color: #0f172a !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .project-card .text-slate-300,
+body:not(.dark-mode) .cosmic-bg .project-card .text-slate-400,
+body.light-mode .cosmic-bg .project-card .text-slate-300,
+body.light-mode .cosmic-bg .project-card .text-slate-400 {
+    color: #475569 !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .project-card .bg-slate-800,
+body.light-mode .cosmic-bg .project-card .bg-slate-800 {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+}
+
+body:not(.dark-mode) .cosmic-bg .project-card .bg-slate-800:hover,
+body.light-mode .cosmic-bg .project-card .bg-slate-800:hover {
+    background-color: #334155 !important;
+}
+
+/* ------------------------------------------
+   10. Mobile & Tablet Responsiveness
    ------------------------------------------ */
 @media (max-width: 768px) {
     .cosmic-card {
