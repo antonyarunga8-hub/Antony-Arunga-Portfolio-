@@ -236,42 +236,60 @@ You can view all projects in detail on the <a href="projects.html" class="text-b
 
         // Skills
         if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech stack') || lowerMessage.includes('tool') || lowerMessage.includes('marketing')) {
-            return `Antony possesses a comprehensive, multi-disciplinary tech, automation, and marketing stack:
+            return `Antony possesses a comprehensive, multi-disciplinary tech, data, automation, and marketing stack:
 
 <strong>Programming & Frameworks:</strong>
-• Python (FastAPI, Django, Flask)
-• JavaScript & TypeScript
-• React, Vue.js, Node.js, Express
-• Flutter & Dart, PHP, HTML5/CSS3
+• Python (FastAPI, Django, Flask, PyTorch)
+• JavaScript & TypeScript, React, Vue.js, Node.js, Express
+• Flutter & Dart, PHP, HTML5/CSS3, Tailwind CSS
 
-<strong>Databases, ORMs & DevOps:</strong>
+<strong>AI, ML & Data Operations:</strong>
+• Data Annotation & Labeling, Multimodal Dataset QA (CloudFactory)
+• Applied Machine Learning & AI Search Optimization (FlyRank AI)
+• Prompt Engineering & Generative Model Evaluation (iMerit)
+• Audio Transcription & Speech Data Validation (CrowdGen)
+• Claude Code, Openclaw Agents, n8n Automation
+
+<strong>Databases & Cloud:</strong>
 • PostgreSQL, MySQL, SQL & NoSQL (Firebase, MongoDB)
-• Drizzle ORM, Prisma ORM, Zod Validation
-• Docker, CI/CD, Microservices & REST APIs
+• Drizzle ORM, Prisma ORM, Zod Validation, Docker, CI/CD, REST APIs
 
-<strong>AI & Automation:</strong>
-• Claude Code, Openclaw Agents
-• n8n Workflows, GoHighLevel (GHL CRM)
-
-<strong>Digital Marketing & Creative:</strong>
-• Digital Marketing Principles, Social Media Management
-• Google Analytics, Google Ads, SEO/SEM Best Practices
-• Graphic Design, Canva, Adobe Creative Suite
+<strong>Digital Marketing & Strategy:</strong>
+• SEO/SEM, Google Analytics, Google Ads, GHL CRM
+• Graphic Design (Canva & Adobe Suite), Project Management
 
 Check out the <a href="about.html" class="text-blue-500 hover:underline">About page</a> for a complete breakdown of his skills!`;
         }
 
         // Experience
-        if (lowerMessage.includes('experience') || lowerMessage.includes('work') || lowerMessage.includes('job')) {
-            return `Antony is currently gaining valuable experience as:
+        if (lowerMessage.includes('experience') || lowerMessage.includes('work') || lowerMessage.includes('job') || lowerMessage.includes('career')) {
+            return `Antony has a diverse professional background across AI/ML engineering, data operations, and full-stack software development:
 
-<strong>Intern at Nobel Learning PBC</strong> (Dec 2025 - Present)
-• Teamwork, Web Design, Software Development
+• 🏢 <strong>Founder & Lead Software Engineer @ arungastudio</strong>
+  Leading end-to-end custom web, mobile, and AI software engineering projects for clients.
 
-<strong>Intern at Excelerate</strong> (Dec 2025 - Present)
-• Flutter, Mobile App Development, Teamwork
+• 📊 <strong>Data Specialist @ CloudFactory</strong> (Sep 2026 - Present)
+  Contractor supporting high-precision AI/ML data annotation, labeling, and quality pipelines.
 
-He's also a graduate of Moringa School's AI program and holds certifications in Artificial Intelligence and Machine Learning. Visit the <a href="about.html" class="text-blue-500 hover:underline">About page</a> to learn more!`;
+• 🤖 <strong>Machine Learning Engineering Intern @ FlyRank AI</strong> (Jun 2026 - Present)
+  Focusing on applied ML, AI search optimization, and practical AI capstone implementations.
+
+• 🎓 <strong>Student Recruiter @ Open University of Kenya</strong> (Apr 2026 - Present)
+  Appointed by the DVC Academic Affairs to guide prospective students into OUK programs.
+
+• 🧠 <strong>AI Software Engineer @ iMerit Scholars</strong> (Mar 2026 - Present, Freelance)
+  Evaluating AI image and video models for prompt adherence, visual quality, and benchmark datasets.
+
+• 🎙️ <strong>Artificial Intelligence Engineer @ CrowdGen</strong> (Jan 2026 - Present, Freelance)
+  Speech data annotation, audio transcription, and multilingual NLP validation.
+
+• ⭐ <strong>Digital Strategy Associate (Star Performer) @ Excelerate</strong> (Dec 2025 - June 2026)
+  Cross-functional digital strategy, presentations, and Flutter UI development for Saint Louis University.
+
+• 💻 <strong>Web Developer Intern @ Nobel Learning PBC</strong> (Dec 2025 - June 2026)
+  Frontend/backend web development with JavaScript, React, PHP, and Python.
+
+Visit the <a href="about.html" class="text-blue-500 hover:underline">About page</a> to explore his complete professional timeline!`;
         }
 
         // Education
