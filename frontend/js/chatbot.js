@@ -292,17 +292,26 @@ Check out the <a href="about.html" class="text-blue-500 hover:underline">About p
 Visit the <a href="about.html" class="text-blue-500 hover:underline">About page</a> to explore his complete professional timeline!`;
         }
 
-        // Education
-        if (lowerMessage.includes('education') || lowerMessage.includes('school') || lowerMessage.includes('study') || lowerMessage.includes('certificate')) {
-            return `<strong>Education & Certifications:</strong>
+        // Education & Certifications
+        if (lowerMessage.includes('education') || lowerMessage.includes('school') || lowerMessage.includes('study') || lowerMessage.includes('certificate') || lowerMessage.includes('credential')) {
+            return `<strong>Education & Professional Certifications:</strong>
 
-🎓 <strong>Moringa School</strong> - Artificial Intelligence (2025-2026)
-🎓 <strong>Institute Of Software Technologies</strong> - Computer Software Technology (2025-2026)
+🎓 <strong>Academic Education:</strong>
+• Moringa School - Artificial Intelligence Program (2025-2026)
+• Institute Of Software Technologies - Computer Software Technology (2025-2026)
 
-<strong>Recent Certification:</strong>
-✅ AI Software Engineer - Moringa School (Dec 2025)
+🏆 <strong>Featured Professional Credentials:</strong>
+• <strong>AI Readiness for the Workforce of Tomorrow</strong> - Breedj Academy (Sep 2026)
+• <strong>Remote Work Ready</strong> - Breedj Academy (Sep 2026)
+• <strong>Autonomous Talent Playbook</strong> - Breedj Academy (Sep 2026)
+• <strong>From Static Resumes to Trust Portfolios</strong> - Breedj Academy (Sep 2026)
+• <strong>Job-Searching Strategy & Networking in Remote Work</strong> - Breedj Academy (Sep 2026)
+• <strong>Digital Strategy Associate (⭐ Star Performer)</strong> - Excelerate · Saint Louis University (Jan 2026)
+• <strong>AI Software Engineer</strong> - Moringa School (Dec 2025)
+• <strong>Jobberman Soft Skills Training</strong> - Mastercard Foundation (Nov 2025)
+• <strong>Soft Skills for Career Success</strong> - BrighterMonday Kenya (Nov 2025)
 
-Antony is passionate about continuous learning and staying up-to-date with the latest technologies!`;
+Visit the <a href="about.html" class="text-blue-500 hover:underline">About page</a> to inspect verified certificate badges and PDF downloads!`;
         }
 
         // Contact
