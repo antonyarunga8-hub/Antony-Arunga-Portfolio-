@@ -283,6 +283,9 @@ Check out the <a href="about.html" class="text-blue-500 hover:underline">About p
 • 🎙️ <strong>Artificial Intelligence Engineer @ CrowdGen</strong> (Jan 2026 - Present, Freelance)
   Speech data annotation, audio transcription, and multilingual NLP validation.
 
+• 🌐 <strong>AI Engineer & Full Stack Web App Developer @ Freelancer.com</strong> (Dec 2025 - Present, Freelance)
+  Custom web apps (Python, PHP, JS, SQL), AI quality evaluation, API integrations & 100% project accept rate.
+
 • ⭐ <strong>Digital Strategy Associate (Star Performer) @ Excelerate</strong> (Dec 2025 - June 2026)
   Cross-functional digital strategy, presentations, and Flutter UI development for Saint Louis University.
 
