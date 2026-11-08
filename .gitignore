@@ -35,6 +35,7 @@ database.db
 
 # Environment variables
 .env
+.env.production
 .env.local
 .env.*.local
 
@@ -81,3 +82,7 @@ temp/
 _archive_unused_files/
 global-education-platform/
 
+
+# Nested git repos (pushed separately)
+safari-tour-company/
+antonyarunga8-hub/

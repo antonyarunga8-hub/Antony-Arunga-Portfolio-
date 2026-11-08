@@ -1,9 +1,11 @@
 // Main JavaScript for Antony Arunga's Portfolio
 
-// API Configuration
-const API_BASE_URL = 'https://my-portfolio-2026-1.onrender.com/api';
+// Dynamic API Configuration (Auto-detects Localhost vs Render Cloud Backend)
+const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:5000/api'
+    : 'https://my-portfolio-2026-1.onrender.com/api';
 
-// Track page visit on load
+// Track page visit on load in real-time
 function trackPageVisit() {
     const pageName = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
     const referrer = document.referrer || 'direct';
@@ -18,8 +20,7 @@ function trackPageVisit() {
             referrer: referrer
         })
     }).catch(error => {
-        console.log('Analytics tracking failed:', error);
-        // Fail silently - don't impact user experience
+        // Fail silently on public pages - don't disrupt visitor experience
     });
 }
 
@@ -148,63 +149,63 @@ async function loadProjects() {
 function displaySampleProjects(container) {
     const sampleProjects = [
         {
-            title: 'E-Commerce Platform',
-            description: 'A full-stack e-commerce platform with user authentication, product management, shopping cart, and payment integration. Features include real-time inventory updates, order tracking, and admin dashboard.',
-            technologies: ['Python', 'Flask', 'MySQL', 'JavaScript', 'Tailwind CSS'],
-            link: '#',
-            icon: 'fa-shopping-cart'
+            title: 'GrowAI SaaS Platform',
+            description: 'AI-driven social media growth and content creation engine powered by OpenAI GPT-4o, Stripe subscriptions, Next.js, and cross-platform Flutter client.',
+            technologies: ['Next.js 14', 'Flutter', 'TypeScript', 'OpenAI GPT-4o', 'Stripe'],
+            link: 'https://github.com/antonyarunga8-hub/growai-saas',
+            icon: 'fa-brain'
         },
         {
-            title: 'Task Management App',
-            description: 'A responsive task management application with drag-and-drop functionality, real-time updates, and collaborative features. Supports team workspaces, priority levels, and deadline tracking.',
-            technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Socket.io'],
-            link: '#',
-            icon: 'fa-tasks'
+            title: 'SecurePay Fintech',
+            description: 'High-security multi-currency fintech platform with Safaricom Daraja M-Pesa STK push, utility bill payments, and biometric Flutter mobile app.',
+            technologies: ['Flutter', 'Node.js', 'Firebase', 'Daraja M-Pesa API', 'Web Crypto'],
+            link: 'https://github.com/antonyarunga8-hub/securepay-fintech',
+            icon: 'fa-shield-alt'
         },
         {
-            title: 'Weather Dashboard',
-            description: 'An interactive weather dashboard that displays current conditions, forecasts, and weather maps using external APIs. Includes location-based weather, hourly and weekly forecasts.',
-            technologies: ['JavaScript', 'HTML5', 'CSS3', 'OpenWeather API'],
-            link: '#',
-            icon: 'fa-cloud-sun'
+            title: 'Global Education Platform',
+            description: 'Comprehensive platform connecting students with global internship pathways, masterclasses, and employer partnerships with real-time Firestore sync.',
+            technologies: ['HTML5', 'Tailwind CSS', 'JavaScript', 'Firebase Firestore'],
+            link: 'https://github.com/antonyarunga8-hub/global-education-platform',
+            icon: 'fa-graduation-cap'
         },
         {
-            title: 'Portfolio Website',
-            description: 'A personal portfolio website showcasing projects, skills, and contact information with a modern, responsive design. Built with performance and SEO in mind.',
-            technologies: ['HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS', 'Python', 'Flask'],
-            link: '#',
-            icon: 'fa-briefcase'
+            title: 'Cheers Hotel POS App',
+            description: 'Dual-platform POS sales recording system replacing manual receipt books with synchronized till and mobile ordering writing to Firestore with ESC/POS thermal printing.',
+            technologies: ['Flutter', 'Dart', 'Firebase Firestore', 'ESC/POS Driver'],
+            link: 'https://github.com/antonyarunga8-hub/Cheers-hotel-Sales-Records-app',
+            icon: 'fa-cash-register'
         },
         {
-            title: 'Blog Platform',
-            description: 'A content management system for blogging with markdown support, categories, tags, and comment functionality. Features include rich text editor, image uploads, and social sharing.',
-            technologies: ['Python', 'Flask', 'PostgreSQL', 'Jinja2', 'Bootstrap'],
-            link: '#',
-            icon: 'fa-blog'
+            title: 'AI4SMES Africa Platform',
+            description: 'Pan-African AI business operating system empowering African SMEs with digital automation tools, customer service bots, and WhatsApp OS simulator.',
+            technologies: ['React 18', 'Vite', 'Tailwind CSS', 'Python', 'Recharts'],
+            link: 'https://github.com/antonyarunga8-hub/AI4SMES',
+            icon: 'fa-robot'
         },
         {
-            title: 'Real-Time Chat Application',
-            description: 'A real-time messaging application with private and group chat capabilities, file sharing, and user presence indicators. Supports emoji reactions, message threading, and video calls.',
-            technologies: ['Node.js', 'Socket.io', 'Express', 'MongoDB', 'React'],
-            link: '#',
-            icon: 'fa-comments'
+            title: 'Wild Safari Tours Platform',
+            description: 'Premium safari tour booking web platform with package management, customer reviews, and serverless Firebase booking management.',
+            technologies: ['JavaScript', 'HTML5', 'CSS3', 'Firebase Cloud Functions'],
+            link: 'https://github.com/antonyarunga8-hub/Safari-tour-company-',
+            icon: 'fa-compass'
         }
     ];
     
     container.innerHTML = sampleProjects.map((project, index) => `
         <div class="project-card bg-white rounded-xl shadow-lg p-6 fade-in" style="animation-delay: ${index * 0.1}s">
-            <div class="mb-4 h-48 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg flex items-center justify-center">
+            <div class="mb-4 h-48 bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 rounded-lg flex items-center justify-center">
                 <i class="fas ${project.icon} text-white text-6xl"></i>
             </div>
             <h3 class="text-2xl font-bold mb-3 text-gray-800">${project.title}</h3>
-            <p class="text-gray-600 mb-4">${project.description}</p>
+            <p class="text-gray-600 mb-4 line-clamp-3">${project.description}</p>
             <div class="flex flex-wrap gap-2 mb-6">
                 ${project.technologies.map(tech => 
                     `<span class="project-badge">${tech}</span>`
                 ).join('')}
             </div>
-            <a href="${project.link}" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition group">
-                View Project 
+            <a href="${project.link}" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition group">
+                <i class="fab fa-github mr-2"></i>View Code 
                 <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
             </a>
         </div>

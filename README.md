@@ -1,6 +1,92 @@
 # Antony Arunga's Portfolio 2026
 
-A modern, full-stack portfolio website showcasing projects, skills, and contact information. Built with Flask backend and vanilla JavaScript frontend.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Profile](https://img.shields.io/badge/GitHub-antonyarunga8--hub-181717?style=flat&logo=github)](https://github.com/antonyarunga8-hub)
+[![Live Portfolio](https://img.shields.io/badge/Live--Demo-myportfolio--202--6.netlify.app-blue?style=flat&logo=netlify)](https://myportfolio-202-6.netlify.app/)
+[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=flat&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+
+A modern, full-stack portfolio website showcasing projects, skills, certificates, and contact information. Built with Flask backend and vanilla JavaScript frontend.
+
+---
+
+### 🌐 Quick Navigation
+- 🏠 **[Live Web App](https://myportfolio-202-6.netlify.app/)**
+- 📂 **[GitHub Repositories](https://github.com/antonyarunga8-hub?tab=repositories)**
+- 👨‍💻 **[Developer Profile](https://github.com/antonyarunga8-hub)**
+- 📜 **[MIT License](LICENSE)**
+
+---
+
+## 🖼️ Application Navigation & Visual Showcase
+
+### 📱 Portfolio App Navigation Pages
+
+<table width="100%">
+  <tr>
+    <td width="50%" align="center">
+      <b>1. Home Page (`index.html`)</b><br><br>
+      <img src="frontend/assets/images/Personal%20Portfolio%20Website%201Home.jpg" alt="Home Page" width="100%">
+      <br><sub>Hero banner, bio profile, statistics counter & tech stack</sub>
+    </td>
+    <td width="50%" align="center">
+      <b>2. About Page (`about.html`)</b><br><br>
+      <img src="frontend/assets/images/Personal%20Portfolio%20Website%202About.jpg" alt="About Page" width="100%">
+      <br><sub>Experience timeline, AI/ML background & skills radar</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <b>3. Projects Page (`projects.html`)</b><br><br>
+      <img src="frontend/assets/images/Personal%20Portfolio%20Website%203%20Projects.jpg" alt="Projects Page" width="100%">
+      <br><sub>Dynamic project grid, tech filter tags & gallery modal</sub>
+    </td>
+    <td width="50%" align="center">
+      <b>4. Contact Page (`contact.html`)</b><br><br>
+      <img src="frontend/assets/images/Personal%20Portfolio%20Website%204%20Contact.jpg" alt="Contact Page" width="100%">
+      <br><sub>Interactive contact form, backend validation & social links</sub>
+    </td>
+  </tr>
+</table>
+
+---
+
+### 🚀 Featured Application Projects Gallery
+
+<table width="100%">
+  <tr>
+    <td width="50%" align="center">
+      <b>🎓 Global Education Platform (Home)</b><br><br>
+      <img src="frontend/assets/images/Global%20Education%20Platform%201%20Home.jpg" alt="Global Education Platform Home" width="100%">
+    </td>
+    <td width="50%" align="center">
+      <b>🎓 Global Education Platform (About)</b><br><br>
+      <img src="frontend/assets/images/Global%20Education%20Platform%202%20About%20us.jpg" alt="Global Education Platform About" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <b>🦁 Safari Tour Booking Platform</b><br><br>
+      <img src="frontend/assets/images/Safari%20Tour%20Company%20Platform.jpg" alt="Safari Tour Company" width="100%">
+    </td>
+    <td width="50%" align="center">
+      <b>☕ Modern Cafe Commerce Platform</b><br><br>
+      <img src="frontend/assets/images/Modern%20Cafe%20Commerce%20Platform1%20Home.jpg" alt="Modern Cafe Commerce" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <b>🏛️ Kaisha Ubbaga Foundation (Home)</b><br><br>
+      <img src="frontend/assets/images/Kaisha%20Ubbaga%20Foundation1%20Home.jpg" alt="Kaisha Ubbaga Foundation Home" width="100%">
+    </td>
+    <td width="50%" align="center">
+      <b>🏛️ Kaisha Ubbaga Foundation (Dashboard)</b><br><br>
+      <img src="frontend/assets/images/Kaisha%20Ubbaga%20Foundation%203%20Dashboard.jpg" alt="Kaisha Ubbaga Foundation Dashboard" width="100%">
+    </td>
+  </tr>
+</table>
+
+---
 
 ## 🚀 Features
 
@@ -241,7 +327,7 @@ curl -X POST http://localhost:5000/api/projects \
 
 ## 📝 License
 
-MIT License - feel free to use this project for your own portfolio!
+This project is licensed under the [MIT License](LICENSE) — feel free to use and adapt this project for your own portfolio!
 
 ## 👤 Author
 

@@ -3,6 +3,16 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+def format_datetime(val):
+    if val is None:
+        return datetime.utcnow().isoformat()
+    if isinstance(val, str):
+        return val
+    try:
+        return val.isoformat()
+    except Exception:
+        return str(val)
+
 class Project(db.Model):
     __tablename__ = 'projects'
     
@@ -16,15 +26,18 @@ class Project(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     def to_dict(self):
+        tech_list = []
+        if self.technologies:
+            tech_list = [t.strip() for t in self.technologies.split(',') if t.strip()]
         return {
             'id': self.id,
             'title': self.title,
             'description': self.description,
-            'technologies': self.technologies.split(','),
-            'link': self.link,
-            'image_url': self.image_url,
-            'status': self.status,
-            'created_at': self.created_at.isoformat()
+            'technologies': tech_list,
+            'link': self.link or '',
+            'image_url': self.image_url or '',
+            'status': self.status or 'completed',
+            'created_at': format_datetime(self.created_at)
         }
 
 class Contact(db.Model):
@@ -34,6 +47,7 @@ class Contact(db.Model):
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     message = db.Column(db.Text, nullable=False)
+    is_read = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     def to_dict(self):
@@ -42,7 +56,8 @@ class Contact(db.Model):
             'name': self.name,
             'email': self.email,
             'message': self.message,
-            'created_at': self.created_at.isoformat()
+            'is_read': bool(self.is_read),
+            'created_at': format_datetime(self.created_at)
         }
 
 class Analytics(db.Model):
@@ -62,5 +77,5 @@ class Analytics(db.Model):
             'ip_address': self.ip_address,
             'user_agent': self.user_agent,
             'referrer': self.referrer,
-            'timestamp': self.timestamp.isoformat()
+            'timestamp': format_datetime(self.timestamp)
         }

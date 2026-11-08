@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — Antony Arunga & arungastudio</title>
+    <!-- Arunga Studio Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/arungastudio-logo.png">
+    <link rel="apple-touch-icon" href="assets/images/arungastudio-logo.png">
+    
+    <!-- Tailwind CSS & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/space-theme.css">
+    
+    <style>
+        .pulse-dot {
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 1.8s infinite;
+        }
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        .toast-enter {
+            animation: slideInDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideInDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-slate-100 min-h-screen flex flex-col font-sans">
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-3 pointer-events-none max-w-sm w-full"></div>
+
+    <!-- 1. Strict Authentication Gate (Login Screen) -->
+    <div id="login-modal" class="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4">
+        <div class="cosmic-card w-full max-w-md p-8 rounded-2xl border border-slate-700/80 shadow-2xl relative">
+            <div class="text-center mb-8">
+                <img src="assets/images/arungastudio-logo.png" alt="Arunga Studio Logo" class="w-16 h-20 object-contain mx-auto mb-3 filter drop-shadow">
+                <h2 class="text-2xl font-bold text-white tracking-wide">arungastudio</h2>
+                <p class="text-sm text-blue-400 font-semibold tracking-wider uppercase mt-1">Strict Admin Access Gate</p>
+                <p class="text-xs text-slate-400 mt-2">Authorized developer portal for Antony Arunga</p>
+            </div>
+
+            <form id="login-form" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Username</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <i class="fas fa-user-shield"></i>
+                        </span>
+                        <input type="text" id="admin-user" required class="w-full pl-10 pr-4 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition" placeholder="Admin username">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Admin Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <input type="password" id="admin-pass" required class="w-full pl-10 pr-10 py-3 bg-slate-900 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition" placeholder="••••••••••••">
+                        <button type="button" onclick="togglePassVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-white transition">
+                            <i id="pass-icon" class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="login-error" class="hidden text-red-400 bg-red-950/60 border border-red-800 p-3 rounded-lg text-sm flex items-center gap-2">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span id="login-error-text">Invalid admin credentials.</span>
+                </div>
+
+                <button type="submit" id="login-btn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold py-3 px-6 rounded-xl transition transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-key"></i>
+                    <span>Unlock Dashboard</span>
+                </button>
+            </form>
+
+            <div class="mt-6 pt-4 border-t border-slate-800 text-center">
+                <a href="index.html" class="text-xs text-slate-400 hover:text-blue-400 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-arrow-left"></i> Return to Main Website
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Main Admin Dashboard View -->
+    <div id="dashboard-content" class="hidden flex-1 flex flex-col">
+        <!-- Dashboard Top Header Bar -->
+        <header class="bg-gray-900/90 border-b border-slate-800 sticky top-0 z-40 backdrop-blur-md px-4 py-3">
+            <div class="container mx-auto flex flex-wrap items-center justify-between gap-4">
+                <!-- Branding -->
+                <div class="flex items-center gap-3">
+                    <img src="assets/images/arungastudio-logo.png" alt="Arunga Studio Logo" class="w-8 h-10 object-contain">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="text-lg font-bold text-white tracking-wide">arungastudio</h1>
+                            <span class="bg-blue-600/30 text-blue-300 border border-blue-500/40 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Live Admin</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Antony Arunga Portfolio Command Center</p>
+                    </div>
+                </div>
+
+                <!-- Real-time Status Badges & Controls -->
+                <div class="flex items-center flex-wrap gap-2 md:gap-4">
+                    <!-- Live indicator -->
+                    <div id="live-indicator-pill" class="flex items-center gap-2 bg-emerald-950/70 border border-emerald-700/60 text-emerald-300 px-3 py-1.5 rounded-full text-xs font-medium">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+                        <span id="live-indicator-text">Real-Time Live</span>
+                    </div>
+
+                    <!-- Audio alerts toggle -->
+                    <button id="sound-btn" onclick="toggleSound()" class="px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-xs text-slate-200 transition flex items-center gap-1.5" title="Toggle audio chime on new inquiries">
+                        <i id="sound-icon" class="fas fa-bell text-yellow-400"></i>
+                        <span id="sound-text">Sound: ON</span>
+                    </button>
+
+                    <!-- Auto-refresh pause toggle -->
+                    <button id="pause-btn" onclick="toggleAutoRefresh()" class="px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-xs text-slate-200 transition flex items-center gap-1.5" title="Pause / Resume Live polling">
+                        <i id="pause-icon" class="fas fa-pause text-blue-400"></i>
+                        <span id="pause-text">Auto: 4s</span>
+                    </button>
+
+                    <!-- Web notification permission button -->
+                    <button id="push-btn" onclick="requestDesktopNotifications()" class="px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-xs text-slate-200 transition flex items-center gap-1.5" title="Enable browser push notifications">
+                        <i class="fas fa-desktop text-purple-400"></i>
+                        <span>Desktop Alerts</span>
+                    </button>
+
+                    <!-- Public Site Link -->
+                    <a href="index.html" target="_blank" class="px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-xs text-slate-300 transition flex items-center gap-1.5">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span class="hidden sm:inline">View Site</span>
+                    </a>
+
+                    <!-- Logout -->
+                    <button onclick="adminLogout()" class="px-3 py-1.5 rounded-lg border border-red-800/60 bg-red-950/40 hover:bg-red-900/60 text-xs text-red-300 transition flex items-center gap-1.5">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="container mx-auto px-4 py-8 flex-1">
+
+            <!-- 1. Key Performance Indicators (KPIs) -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Total Visits -->
+                <div class="stat-card cosmic-card p-6 rounded-2xl border border-slate-800 shadow-lg relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold tracking-wider uppercase text-slate-400">Total Visits</span>
+                        <div class="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-lg"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-white" id="kpi-total-visits">0</h3>
+                    <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                        <i class="fas fa-globe text-blue-400"></i> All recorded page loads
+                    </p>
+                </div>
+
+                <!-- Visits Today -->
+                <div class="stat-card cosmic-card p-6 rounded-2xl border border-slate-800 shadow-lg relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold tracking-wider uppercase text-slate-400">Visits Today</span>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center">
+                            <i class="fas fa-calendar-day text-lg"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-emerald-400" id="kpi-today-visits">0</h3>
+                    <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                        <i class="fas fa-clock text-emerald-400"></i> Since 00:00 UTC
+                    </p>
+                </div>
+
+                <!-- Active In Last 15 Min -->
+                <div class="stat-card cosmic-card p-6 rounded-2xl border border-slate-800 shadow-lg relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold tracking-wider uppercase text-slate-400">Live Recent</span>
+                        <div class="w-10 h-10 rounded-xl bg-amber-600/20 text-amber-400 flex items-center justify-center">
+                            <i class="fas fa-users-rays text-lg"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-amber-400" id="kpi-active-recent">0</h3>
+                    <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> Active in last 15 min
+                    </p>
+                </div>
+
+                <!-- Inquiries / Messages -->
+                <div class="stat-card cosmic-card p-6 rounded-2xl border border-slate-800 shadow-lg relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold tracking-wider uppercase text-slate-400">Contact Inquiries</span>
+                        <div class="w-10 h-10 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center">
+                            <i class="fas fa-envelope-open-text text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-3">
+                        <h3 class="text-3xl font-extrabold text-purple-400" id="kpi-total-contacts">0</h3>
+                        <span id="kpi-unread-badge" class="bg-red-500/20 border border-red-500 text-red-300 text-xs px-2 py-0.5 rounded-full font-bold hidden">
+                            0 new
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                        <i class="fas fa-inbox text-purple-400"></i> Form submissions
+                    </p>
+                </div>
+            </section>
+
+            <!-- Navigation Tabs -->
+            <div class="flex items-center gap-3 border-b border-slate-800 mb-6 pb-2">
+                <button onclick="switchTab('visits')" id="tab-btn-visits" class="px-5 py-2.5 rounded-xl font-semibold text-sm transition flex items-center gap-2 bg-blue-600 text-white shadow-lg">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Real-Time Visits Stream</span>
+                    <span id="visits-count-badge" class="ml-1 text-xs bg-blue-800 px-2 py-0.5 rounded-full">0</span>
+                </button>
+
+                <button onclick="switchTab('contacts')" id="tab-btn-contacts" class="px-5 py-2.5 rounded-xl font-semibold text-sm transition flex items-center gap-2 text-slate-300 hover:bg-slate-800/60">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Submissions</span>
+                    <span id="inbox-count-badge" class="ml-1 text-xs bg-slate-800 px-2 py-0.5 rounded-full">0</span>
+                </button>
+
+                <button onclick="switchTab('projects')" id="tab-btn-projects" class="px-5 py-2.5 rounded-xl font-semibold text-sm transition flex items-center gap-2 text-slate-300 hover:bg-slate-800/60">
+                    <i class="fas fa-code-branch"></i>
+                    <span>Repositories & Projects</span>
+                </button>
+            </div>
+
+            <!-- Tab 1: Real-Time Visits Stream -->
+            <section id="tab-content-visits" class="space-y-6">
+                <!-- Visits by Page Cards -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="page-breakdown-cards">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <!-- Live Stream Feed Table -->
+                <div class="cosmic-card rounded-2xl border border-slate-800 shadow-xl overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 rounded-full bg-emerald-400 pulse-dot"></div>
+                            <h3 class="font-bold text-white text-base">Live Visitor Activity Log</h3>
+                            <span class="text-xs text-slate-400" id="last-updated-text">Updating in real-time...</span>
+                        </div>
+
+                        <!-- Search / Filter -->
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500 text-xs">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <input type="text" id="visit-search-input" onkeyup="filterVisitsTable()" placeholder="Search IP, page, device..." class="bg-slate-900 border border-slate-700 pl-8 pr-3 py-1.5 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500">
+                            </div>
+                            <button onclick="fetchInitialData()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs rounded-lg border border-slate-700 transition flex items-center gap-1.5">
+                                <i class="fas fa-sync-alt" id="refresh-spinner"></i>
+                                <span>Refresh</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto max-h-[550px] overflow-y-auto">
+                        <table class="w-full text-left text-xs" id="visits-table">
+                            <thead class="bg-slate-900/90 text-slate-400 uppercase tracking-wider sticky top-0 z-10 border-b border-slate-800">
+                                <tr>
+                                    <th class="py-3 px-4">Time (Local)</th>
+                                    <th class="py-3 px-4">Page</th>
+                                    <th class="py-3 px-4">Visitor IP</th>
+                                    <th class="py-3 px-4">Device / Browser</th>
+                                    <th class="py-3 px-4">Referrer</th>
+                                </tr>
+                            </thead>
+                            <tbody id="visits-tbody" class="divide-y divide-slate-800/60 font-mono text-slate-300">
+                                <tr>
+                                    <td colspan="5" class="text-center py-8 text-slate-500">
+                                        <i class="fas fa-spinner fa-spin text-lg mr-2"></i> Loading visitor logs...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 2: Contact Form Submissions (Inbox) -->
+            <section id="tab-content-contacts" class="hidden space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fas fa-inbox text-purple-400"></i> Contact Form Messages
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">Real-time inquiries received from the portfolio contact form</p>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <button onclick="exportContactsCSV()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs rounded-xl transition flex items-center gap-2">
+                            <i class="fas fa-download text-emerald-400"></i>
+                            <span>Export CSV</span>
+                        </button>
+                        <button onclick="fetchContacts()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs rounded-xl transition flex items-center gap-2">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Refresh Messages</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Messages Container -->
+                <div id="contacts-container" class="space-y-4">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+            <!-- Tab 3: Repositories & Projects -->
+            <section id="tab-content-projects" class="hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fab fa-github text-blue-400"></i> Antony Arunga Repository Hub
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">Quick-access directory of all active repositories and production systems</p>
+                    </div>
+                    <a href="https://github.com/antonyarunga8-hub?tab=repositories" target="_blank" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-xl transition flex items-center gap-2">
+                        <i class="fab fa-github"></i>
+                        <span>Open GitHub</span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="admin-repos-grid">
+                    <!-- Loaded dynamically -->
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 border-t border-slate-800/80 text-center py-4 text-xs text-slate-500">
+            <p>arungastudio &copy; 2026 Antony Arunga. Strictly Authorized Access Only.</p>
+        </footer>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // API Base URL Detection (handles local development vs Render production)
+        const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? 'http://localhost:5000/api'
+            : 'https://my-portfolio-2026-1.onrender.com/api';
+
+        // State
+        let adminToken = localStorage.getItem('arunga_admin_token') || '';
+        let highestVisitId = 0;
+        let highestContactId = 0;
+        let allVisits = [];
+        let allContacts = [];
+        let isAudioEnabled = localStorage.getItem('arunga_admin_sound') !== 'false';
+        let isAutoRefreshActive = true;
+        let refreshInterval = null;
+        let currentTab = 'visits';
+
+        // Repositories List
+        const repositories = [
+            { name: "Antony-Arunga-Portfolio-", desc: "Full-Stack Portfolio website with Flask, Netlify & Tailwind.", tag: "Portfolio", repo: "https://github.com/antonyarunga8-hub/Antony-Arunga-Portfolio-", live: "https://myportfolio-202-6.netlify.app/" },
+            { name: "global-education-platform", desc: "Student global internship and educator pathway platform.", tag: "EdTech", repo: "https://github.com/antonyarunga8-hub/global-education-platform", live: "https://myportfolio-202-6.netlify.app/projects" },
+            { name: "Safari-tour-company-", desc: "Wild Safari Tours booking platform with Firebase serverless.", tag: "Travel", repo: "https://github.com/antonyarunga8-hub/Safari-tour-company-", live: "" },
+            { name: "growai-saas", desc: "Full-stack AI SaaS & cross-platform Flutter creator app.", tag: "AI/ML SaaS", repo: "https://github.com/antonyarunga8-hub/growai-saas", live: "" },
+            { name: "securepay-fintech", desc: "Cybersecurity fintech wallet with Safaricom Daraja STK Push.", tag: "Fintech", repo: "https://github.com/antonyarunga8-hub/securepay-fintech", live: "https://securepay-fintech.web.app" },
+            { name: "AI4SMES", desc: "Pan-African AI business automation operating system.", tag: "AI/ML", repo: "https://github.com/antonyarunga8-hub/AI4SMES", live: "" },
+            { name: "Cheers-hotel-Sales-Records-app", desc: "Dual-platform POS app with ESC/POS thermal printing.", tag: "POS App", repo: "https://github.com/antonyarunga8-hub/Cheers-hotel-Sales-Records-app", live: "" },
+            { name: "studocorp", desc: "Kenyan high school student transit tracking platform.", tag: "Transit", repo: "https://github.com/antonyarunga8-hub/studocorp", live: "" },
+            { name: "kolman-grains", desc: "Corporate website & grain storage distribution catalog.", tag: "AgriTech", repo: "https://github.com/antonyarunga8-hub/kolman-grains", live: "" },
+            { name: "apseshopping-react", desc: "Multi-vendor e-commerce platform in React 18 & Web Crypto.", tag: "E-Commerce", repo: "https://github.com/antonyarunga8-hub/apseshopping-react", live: "" },
+            { name: "Kaisha-Ubbaga-Foundation-", desc: "Non-profit community foundation with M-Pesa donations.", tag: "Non-Profit", repo: "https://github.com/antonyarunga8-hub/Kaisha-Ubbaga-Foundation-", live: "" },
+            { name: "mobile-learning-app", desc: "Cross-platform mobile learning application in Flutter & Dart.", tag: "Mobile", repo: "https://github.com/antonyarunga8-hub/mobile-learning-app", live: "" },
+            { name: "twc-signatures", desc: "Digital corporate email signature generator suite.", tag: "Tool", repo: "https://github.com/antonyarunga8-hub/twc-signatures", live: "" },
+            { name: "antonyarunga8-hub", desc: "GitHub Special Profile README with TokyoNight theme.", tag: "Profile", repo: "https://github.com/antonyarunga8-hub/antonyarunga8-hub", live: "" }
+        ];
+
+        // --- Sound Chime Synthesizer (Web Audio API) ---
+        function playChime(type = 'inquiry') {
+            if (!isAudioEnabled) return;
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
+                
+                if (type === 'inquiry') {
+                    // Double pleasant chime for incoming message
+                    const now = ctx.currentTime;
+                    const osc1 = ctx.createOscillator();
+                    const gain1 = ctx.createGain();
+                    osc1.type = 'sine';
+                    osc1.frequency.setValueAtTime(587.33, now); // D5
+                    osc1.frequency.setValueAtTime(880.00, now + 0.12); // A5
+                    gain1.gain.setValueAtTime(0.2, now);
+                    gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+                    osc1.connect(gain1);
+                    gain1.connect(ctx.destination);
+                    osc1.start(now);
+                    osc1.stop(now + 0.6);
+                } else {
+                    // Soft blip for visit
+                    const now = ctx.currentTime;
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.2);
+                }
+            } catch (e) {
+                console.log('Audio playback error:', e);
+            }
+        }
+
+        // --- Floating Toast Notification ---
+        function showToast(title, message, icon = 'fa-bell', color = 'emerald') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast-enter pointer-events-auto bg-slate-900 border border-${color}-500/60 p-4 rounded-xl shadow-2xl flex items-start gap-3 text-slate-100 backdrop-blur-md`;
+            toast.innerHTML = `
+                <div class="w-8 h-8 rounded-lg bg-${color}-500/20 text-${color}-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <i class="fas ${icon}"></i>
+                </div>
+                <div class="flex-1 pr-2">
+                    <h5 class="text-xs font-bold text-white uppercase tracking-wider">${title}</h5>
+                    <p class="text-xs text-slate-300 mt-0.5 line-clamp-2">${message}</p>
+                </div>
+                <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-white transition text-xs">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                if (toast.parentElement) toast.remove();
+            }, 6000);
+        }
+
+        // --- Desktop Web Notification ---
+        function requestDesktopNotifications() {
+            if (!("Notification" in window)) {
+                alert("This browser does not support desktop notifications.");
+                return;
+            }
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") {
+                    showToast("Alerts Active", "Desktop notifications are enabled for new visits & inquiries!", "fa-check", "purple");
+                    new Notification("arungastudio Admin", {
+                        body: "Desktop notification alerts successfully activated.",
+                        icon: "assets/images/arungastudio-logo.png"
+                    });
+                }
+            });
+        }
+
+        function triggerDesktopNotification(title, body) {
+            if ("Notification" in window && Notification.permission === "granted") {
+                new Notification(title, {
+                    body: body,
+                    icon: "assets/images/arungastudio-logo.png"
+                });
+            }
+        }
+
+        // --- Controls Toggles ---
+        function toggleSound() {
+            isAudioEnabled = !isAudioEnabled;
+            localStorage.setItem('arunga_admin_sound', isAudioEnabled);
+            const icon = document.getElementById('sound-icon');
+            const text = document.getElementById('sound-text');
+            if (isAudioEnabled) {
+                icon.className = 'fas fa-bell text-yellow-400';
+                text.textContent = 'Sound: ON';
+                playChime('inquiry');
+            } else {
+                icon.className = 'fas fa-bell-slash text-slate-500';
+                text.textContent = 'Sound: OFF';
+            }
+        }
+
+        function toggleAutoRefresh() {
+            isAutoRefreshActive = !isAutoRefreshActive;
+            const icon = document.getElementById('pause-icon');
+            const text = document.getElementById('pause-text');
+            const indicator = document.getElementById('live-indicator-pill');
+            const indicatorText = document.getElementById('live-indicator-text');
+
+            if (isAutoRefreshActive) {
+                icon.className = 'fas fa-pause text-blue-400';
+                text.textContent = 'Auto: 4s';
+                indicator.className = 'flex items-center gap-2 bg-emerald-950/70 border border-emerald-700/60 text-emerald-300 px-3 py-1.5 rounded-full text-xs font-medium';
+                indicatorText.textContent = 'Real-Time Live';
+                startLivePolling();
+            } else {
+                icon.className = 'fas fa-play text-amber-400';
+                text.textContent = 'Paused';
+                indicator.className = 'flex items-center gap-2 bg-slate-900 border border-slate-700 text-slate-400 px-3 py-1.5 rounded-full text-xs font-medium';
+                indicatorText.textContent = 'Live Paused';
+                clearInterval(refreshInterval);
+            }
+        }
+
+        function togglePassVisibility() {
+            const input = document.getElementById('admin-pass');
+            const icon = document.getElementById('pass-icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
+        // --- Authentication Flow ---
+        async function checkExistingAuth() {
+            if (!adminToken) {
+                showLoginModal();
+                return;
+            }
+            try {
+                const res = await fetch(`${API_BASE_URL}/admin/verify`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                if (res.ok) {
+                    showDashboard();
+                } else {
+                    showLoginModal();
+                }
+            } catch (e) {
+                // If offline / server waking up, allow using saved token
+                showDashboard();
+            }
+        }
+
+        function showLoginModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.getElementById('dashboard-content').classList.add('hidden');
+        }
+
+        function showDashboard() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('dashboard-content').classList.remove('hidden');
+            renderRepositories();
+            fetchInitialData();
+            startLivePolling();
+        }
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const user = document.getElementById('admin-user').value.trim();
+            const pass = document.getElementById('admin-pass').value;
+            const btn = document.getElementById('login-btn');
+            const errDiv = document.getElementById('login-error');
+            const errText = document.getElementById('login-error-text');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying Credentials...';
+            errDiv.classList.add('hidden');
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/admin/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pass })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.token) {
+                    adminToken = data.token;
+                    localStorage.setItem('arunga_admin_token', adminToken);
+                    showDashboard();
+                    showToast("Access Granted", `Welcome back, Antony Arunga!`, "fa-shield-halved", "emerald");
+                } else {
+                    errText.textContent = data.error || 'Authentication denied.';
+                    errDiv.classList.remove('hidden');
+                }
+            } catch (err) {
+                errText.textContent = 'Connection to backend failed. Please ensure backend is running.';
+                errDiv.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-key"></i> <span>Unlock Dashboard</span>';
+            }
+        });
+
+        function adminLogout() {
+            adminToken = '';
+            localStorage.removeItem('arunga_admin_token');
+            clearInterval(refreshInterval);
+            showLoginModal();
+        }
+
+        // --- Data Fetching & Real-Time Stream ---
+        async function fetchInitialData() {
+            const spinner = document.getElementById('refresh-spinner');
+            if (spinner) spinner.classList.add('fa-spin');
+
+            try {
+                // 1. Fetch Stats
+                const statsRes = await fetch(`${API_BASE_URL}/analytics/stats`);
+                if (statsRes.ok) {
+                    const stats = await statsRes.json();
+                    updateKPIs(stats);
+                    renderPageBreakdown(stats.visits_by_page);
+                }
+
+                // 2. Fetch Detailed Visits
+                const visitsRes = await fetch(`${API_BASE_URL}/analytics/visits?limit=150`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                if (visitsRes.ok) {
+                    allVisits = await visitsRes.json();
+                    if (allVisits.length > 0) {
+                        highestVisitId = Math.max(...allVisits.map(v => v.id));
+                    }
+                    renderVisitsTable(allVisits);
+                }
+
+                // 3. Fetch Contacts
+                await fetchContacts();
+
+                document.getElementById('last-updated-text').textContent = `Last synced: ${new Date().toLocaleTimeString()}`;
+            } catch (e) {
+                console.log('Initial data fetch error:', e);
+            } finally {
+                if (spinner) spinner.classList.remove('fa-spin');
+            }
+        }
+
+        async function fetchContacts() {
+            try {
+                const res = await fetch(`${API_BASE_URL}/contacts`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                if (res.ok) {
+                    allContacts = await res.json();
+                    if (allContacts.length > 0) {
+                        highestContactId = Math.max(...allContacts.map(c => c.id));
+                    }
+                    renderContacts(allContacts);
+                }
+            } catch (e) {
+                console.log('Error loading contacts:', e);
+            }
+        }
+
+        function startLivePolling() {
+            clearInterval(refreshInterval);
+            refreshInterval = setInterval(pollLiveFeed, 4000); // Poll every 4 seconds
+        }
+
+        async function pollLiveFeed() {
+            if (!isAutoRefreshActive || !adminToken) return;
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/analytics/live?since_visit_id=${highestVisitId}&since_contact_id=${highestContactId}`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+
+                if (res.status === 401) {
+                    adminLogout();
+                    return;
+                }
+
+                if (!res.ok) return;
+
+                const data = await res.json();
+
+                // Update KPIs
+                if (data.stats) {
+                    updateKPIs(data.stats);
+                }
+
+                // Check for new visits
+                if (data.new_visits && data.new_visits.length > 0) {
+                    data.new_visits.forEach(v => {
+                        allVisits.unshift(v);
+                        if (v.id > highestVisitId) highestVisitId = v.id;
+                    });
+                    renderVisitsTable(allVisits);
+                    playChime('visit');
+                    const latest = data.new_visits[0];
+                    showToast("Live Visit Recorded", `New visitor on ${latest.page.toUpperCase()} (${latest.ip_address})`, "fa-chart-line", "blue");
+                }
+
+                // Check for new contact messages
+                if (data.new_contacts && data.new_contacts.length > 0) {
+                    data.new_contacts.forEach(c => {
+                        allContacts.unshift(c);
+                        if (c.id > highestContactId) highestContactId = c.id;
+                    });
+                    renderContacts(allContacts);
+                    playChime('inquiry');
+                    const latestContact = data.new_contacts[0];
+                    showToast("New Contact Message!", `From ${latestContact.name}: "${latestContact.message.substring(0, 45)}..."`, "fa-envelope", "purple");
+                    triggerDesktopNotification(`New Message from ${latestContact.name}`, latestContact.message);
+                }
+
+                document.getElementById('last-updated-text').textContent = `Live: ${new Date().toLocaleTimeString()}`;
+            } catch (e) {
+                // Silently wait for next interval
+            }
+        }
+
+        // --- UI Rendering Helpers ---
+        function updateKPIs(stats) {
+            document.getElementById('kpi-total-visits').textContent = stats.total_visits || 0;
+            document.getElementById('kpi-today-visits').textContent = stats.today_visits || 0;
+            document.getElementById('kpi-active-recent').textContent = stats.active_recent || 0;
+            document.getElementById('kpi-total-contacts').textContent = stats.total_contacts || 0;
+            document.getElementById('visits-count-badge').textContent = stats.total_visits || 0;
+
+            const unreadCount = stats.unread_contacts || 0;
+            const badge = document.getElementById('kpi-unread-badge');
+            const inboxBadge = document.getElementById('inbox-count-badge');
+            inboxBadge.textContent = unreadCount;
+
+            if (unreadCount > 0) {
+                badge.textContent = `${unreadCount} new`;
+                badge.classList.remove('hidden');
+                inboxBadge.className = 'ml-1 text-xs bg-red-600 text-white font-bold px-2 py-0.5 rounded-full';
+            } else {
+                badge.classList.add('hidden');
+                inboxBadge.className = 'ml-1 text-xs bg-slate-800 px-2 py-0.5 rounded-full';
+            }
+        }
+
+        function renderPageBreakdown(pages) {
+            const container = document.getElementById('page-breakdown-cards');
+            if (!container || !pages) return;
+            const colorMap = {
+                'index': { color: 'blue', label: 'Home Page', icon: 'fa-home' },
+                'about': { color: 'purple', label: 'About Page', icon: 'fa-user' },
+                'projects': { color: 'emerald', label: 'Projects Page', icon: 'fa-briefcase' },
+                'contact': { color: 'pink', label: 'Contact Page', icon: 'fa-envelope' }
+            };
+
+            container.innerHTML = pages.map(item => {
+                const conf = colorMap[item.page.toLowerCase()] || { color: 'slate', label: item.page, icon: 'fa-file' };
+                return `
+                    <div class="bg-slate-900 border border-slate-800 p-3.5 rounded-xl flex items-center justify-between">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fas ${conf.icon} text-${conf.color}-400"></i>
+                            <span class="text-xs text-slate-300 font-medium">${conf.label}</span>
+                        </div>
+                        <span class="text-sm font-bold text-white bg-slate-800 px-2 py-0.5 rounded-md font-mono">${item.count}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function parseDeviceIcon(ua) {
+            if (!ua) return '<i class="fas fa-desktop text-slate-400" title="Desktop"></i>';
+            if (/mobile|iphone|android|ipad/i.test(ua)) {
+                return '<i class="fas fa-mobile-alt text-blue-400" title="Mobile Device"></i>';
+            }
+            if (/chrome/i.test(ua)) return '<i class="fab fa-chrome text-amber-400" title="Chrome"></i>';
+            if (/safari/i.test(ua)) return '<i class="fab fa-safari text-blue-400" title="Safari"></i>';
+            if (/firefox/i.test(ua)) return '<i class="fab fa-firefox text-orange-400" title="Firefox"></i>';
+            return '<i class="fas fa-laptop text-slate-400" title="Desktop"></i>';
+        }
+
+        function renderVisitsTable(visits) {
+            const tbody = document.getElementById('visits-tbody');
+            if (!tbody) return;
+
+            if (visits.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-slate-500">No visits logged yet.</td></tr>`;
+                return;
+            }
+
+            const pageBadgeClasses = {
+                'index': 'bg-blue-600/20 text-blue-300 border border-blue-500/40',
+                'about': 'bg-purple-600/20 text-purple-300 border border-purple-500/40',
+                'projects': 'bg-emerald-600/20 text-emerald-300 border border-emerald-500/40',
+                'contact': 'bg-pink-600/20 text-pink-300 border border-pink-500/40'
+            };
+
+            tbody.innerHTML = visits.map(v => {
+                const dateObj = new Date(v.timestamp);
+                const timeStr = dateObj.toLocaleDateString() + ' ' + dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                const pageClass = pageBadgeClasses[v.page.toLowerCase()] || 'bg-slate-700 text-slate-300';
+                const referrerClean = (v.referrer && v.referrer !== 'direct') 
+                    ? `<span class="truncate max-w-[200px] inline-block text-slate-400" title="${v.referrer}">${v.referrer.replace(/^https?:\/\//, '')}</span>`
+                    : '<span class="text-slate-600">Direct / Bookmark</span>';
+
+                return `
+                    <tr class="hover:bg-slate-900/60 transition">
+                        <td class="py-3 px-4 text-slate-400 whitespace-nowrap">${timeStr}</td>
+                        <td class="py-3 px-4">
+                            <span class="${pageClass} text-[11px] font-bold px-2 py-0.5 rounded-full uppercase">${v.page}</span>
+                        </td>
+                        <td class="py-3 px-4 text-emerald-400 font-bold">${v.ip_address || 'unknown'}</td>
+                        <td class="py-3 px-4">
+                            <div class="flex items-center gap-2">
+                                ${parseDeviceIcon(v.user_agent)}
+                                <span class="text-slate-400 text-[11px] truncate max-w-[160px]" title="${v.user_agent}">${v.user_agent ? v.user_agent.substring(0, 28) + '...' : 'Unknown'}</span>
+                            </div>
+                        </td>
+                        <td class="py-3 px-4">${referrerClean}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function filterVisitsTable() {
+            const query = document.getElementById('visit-search-input').value.toLowerCase();
+            const filtered = allVisits.filter(v => 
+                (v.page && v.page.toLowerCase().includes(query)) ||
+                (v.ip_address && v.ip_address.toLowerCase().includes(query)) ||
+                (v.user_agent && v.user_agent.toLowerCase().includes(query)) ||
+                (v.referrer && v.referrer.toLowerCase().includes(query))
+            );
+            renderVisitsTable(filtered);
+        }
+
+        function renderContacts(contacts) {
+            const container = document.getElementById('contacts-container');
+            if (!container) return;
+
+            if (contacts.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 bg-slate-900 border border-slate-800 rounded-2xl">
+                        <i class="fas fa-inbox text-4xl text-slate-600 mb-3"></i>
+                        <h4 class="text-base font-bold text-slate-400">Inbox is empty</h4>
+                        <p class="text-xs text-slate-500 mt-1">Submitted contact messages will appear here instantly.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = contacts.map(c => {
+                const dateObj = new Date(c.created_at);
+                const dateStr = dateObj.toLocaleDateString() + ' at ' + dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const isRead = Boolean(c.is_read);
+
+                return `
+                    <div class="cosmic-card p-6 rounded-2xl border ${isRead ? 'border-slate-800/80 bg-slate-950/40 opacity-90' : 'border-purple-500/60 bg-slate-900 shadow-xl'} transition">
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full ${isRead ? 'bg-slate-800 text-slate-400' : 'bg-purple-600/30 text-purple-400 border border-purple-500/40'} flex items-center justify-center font-bold text-sm">
+                                    ${c.name.substring(0, 2).toUpperCase()}
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-bold text-white text-base">${c.name}</h4>
+                                        ${!isRead ? '<span class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">NEW</span>' : ''}
+                                    </div>
+                                    <a href="mailto:${c.email}" class="text-xs text-blue-400 hover:underline flex items-center gap-1 mt-0.5">
+                                        <i class="fas fa-envelope text-[10px]"></i> ${c.email}
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3 text-xs">
+                                <span class="text-slate-400"><i class="fas fa-clock mr-1"></i>${dateStr}</span>
+                                
+                                <!-- Reply Button -->
+                                <a href="mailto:${c.email}?subject=Re:%20Portfolio%20Inquiry%20from%20Antony%20Arunga" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition flex items-center gap-1 font-semibold">
+                                    <i class="fas fa-reply"></i> Reply
+                                </a>
+
+                                <!-- Mark Read/Unread -->
+                                <button onclick="toggleContactRead(${c.id})" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 transition" title="Toggle read/unread">
+                                    <i class="fas ${isRead ? 'fa-envelope' : 'fa-envelope-open'}"></i>
+                                </button>
+
+                                <!-- Delete -->
+                                <button onclick="deleteContactMsg(${c.id})" class="px-3 py-1.5 bg-red-950/40 hover:bg-red-900/60 text-red-400 rounded-lg border border-red-800/40 transition" title="Delete message">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Message Body -->
+                        <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 text-sm text-slate-200 leading-relaxed font-sans whitespace-pre-wrap">
+                            ${c.message}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function toggleContactRead(id) {
+            try {
+                const res = await fetch(`${API_BASE_URL}/contacts/${id}/toggle-read`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                if (res.ok) {
+                    await fetchContacts();
+                }
+            } catch (e) {
+                console.log('Toggle read error:', e);
+            }
+        }
+
+        async function deleteContactMsg(id) {
+            if (!confirm('Are you sure you want to delete this message?')) return;
+            try {
+                const res = await fetch(`${API_BASE_URL}/contacts/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                if (res.ok) {
+                    allContacts = allContacts.filter(c => c.id !== id);
+                    renderContacts(allContacts);
+                    showToast("Message Deleted", "Contact message removed.", "fa-trash", "red");
+                }
+            } catch (e) {
+                console.log('Delete error:', e);
+            }
+        }
+
+        function exportContactsCSV() {
+            window.open(`${API_BASE_URL}/contacts/export?token=${encodeURIComponent(adminToken)}`, '_blank');
+        }
+
+        function renderRepositories() {
+            const grid = document.getElementById('admin-repos-grid');
+            if (!grid) return;
+
+            grid.innerHTML = repositories.map(r => `
+                <div class="cosmic-card p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-600/20 text-blue-300 border border-blue-500/30">${r.tag}</span>
+                            ${r.live ? '<span class="text-[10px] text-emerald-400 font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Live</span>' : ''}
+                        </div>
+                        <h4 class="font-bold text-white text-base mb-1">${r.name}</h4>
+                        <p class="text-xs text-slate-400 mb-4 line-clamp-2">${r.desc}</p>
+                    </div>
+
+                    <div class="flex gap-2 pt-3 border-t border-slate-800">
+                        <a href="${r.repo}" target="_blank" class="flex-1 text-center py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5">
+                            <i class="fab fa-github"></i> View Repo
+                        </a>
+                        ${r.live ? `
+                            <a href="${r.live}" target="_blank" class="flex-1 text-center py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- Tabs Navigation ---
+        function switchTab(tab) {
+            currentTab = tab;
+            ['visits', 'contacts', 'projects'].forEach(t => {
+                const btn = document.getElementById(`tab-btn-${t}`);
+                const content = document.getElementById(`tab-content-${t}`);
+                if (t === tab) {
+                    btn.className = 'px-5 py-2.5 rounded-xl font-semibold text-sm transition flex items-center gap-2 bg-blue-600 text-white shadow-lg';
+                    content.classList.remove('hidden');
+                } else {
+                    btn.className = 'px-5 py-2.5 rounded-xl font-semibold text-sm transition flex items-center gap-2 text-slate-300 hover:bg-slate-800/60';
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        // Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            checkExistingAuth();
+        });
+    </script>
+</body>
+</html>
